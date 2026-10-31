@@ -1,0 +1,1447 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style id="eas-llicencia-css">
+/* Peu de llicència unificat i declaració d'ús d'IA (mateix model que la web principal) */
+.eas-llicencia{margin:0;line-height:1.7}
+.eas-llicencia img{width:1em;height:1em;margin-left:.2em;vertical-align:-.15em}
+.eas-autoria{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.eas-autoria:hover{color:#EA5B0C}
+.eas-autoria:focus-visible,.eas-tanca:focus-visible{outline:3px solid #EA5B0C;outline-offset:2px;border-radius:4px}
+.eas-ia{margin:auto;max-width:min(34rem,calc(100% - 2rem));padding:1.4rem 1.6rem;background:#FAFAF7;color:#1A1814;border:2px solid #EA5B0C;border-radius:16px;box-shadow:0 20px 50px rgba(20,18,15,.35);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1rem;line-height:1.6;text-align:left}
+.eas-ia::backdrop{background:rgba(20,18,15,.55)}
+.eas-ia p{margin:0 0 1rem;max-width:none;color:#1A1814}
+.eas-ia strong{color:#AC3E00}
+.eas-tanca{font:500 .85rem/1 ui-monospace,Consolas,monospace;background:#EA5B0C;color:#14120F;border:0;border-radius:999px;padding:.6rem 1.1rem;cursor:pointer}
+.eas-tanca:hover{background:#FF6E1A}
+.eas-ia.eas-fb{position:fixed;inset:0;height:fit-content;z-index:1000}
+@media print{.eas-ia{display:none!important}}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .eas-llicencia img{filter:invert(88%)} }
+:root[data-theme="dark"] .eas-llicencia img{filter:invert(88%)}
+</style>
+</head><body>
+<title>Radicals 5E</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: quadern quadriculat; capçalera amb la tesi, navegació 5E en seqüència, una columna de lectura (max 860px) */
+:root {
+  --paper: #f5f7fc; --sheet: #ffffff; --ink: #172038; --muted: #56607a; --line: #d6dbea; --grid: rgba(46, 82, 178, .075);
+  --accent: #2e52b2; --accent-ink: #ffffff; --soft: #eaeffb;
+  --p1: #b4530a; --p2: #0e7468; --p3: #2049c9; --p4: #7434d6; --p5: #b8195e;
+  --ok: #15803d; --ok-bg: #e7f5ec; --ko: #b42318; --ko-bg: #fdeceb; --warn: #95600a; --warn-bg: #fdf5e1;
+  --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0e1322; --sheet: #151b2e; --ink: #e6e9f3; --muted: #9ca5bf; --line: #2a3352; --grid: rgba(140, 165, 255, .06);
+  --accent: #8fa8ff; --accent-ink: #0e1322; --soft: #1c2440;
+  --p1: #f2a33a; --p2: #39cdb9; --p3: #84a6ff; --p4: #b996ff; --p5: #f26fa8;
+  --ok: #5ad48a; --ok-bg: #10291b; --ko: #ff8a80; --ko-bg: #2e1515; --warn: #f3c552; --warn-bg: #2a230f;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0e1322; --sheet: #151b2e; --ink: #e6e9f3; --muted: #9ca5bf; --line: #2a3352; --grid: rgba(140, 165, 255, .06);
+  --accent: #8fa8ff; --accent-ink: #0e1322; --soft: #1c2440;
+  --p1: #f2a33a; --p2: #39cdb9; --p3: #84a6ff; --p4: #b996ff; --p5: #f26fa8;
+  --ok: #5ad48a; --ok-bg: #10291b; --ko: #ff8a80; --ko-bg: #2e1515; --warn: #f3c552; --warn-bg: #2a230f;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body {
+  background-color: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--sheet); }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 800; letter-spacing: -.01em; }
+h3 { font-size: 1.25rem; font-weight: 700; }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* capçalera */
+.top { background: var(--sheet); border-bottom: 1px solid var(--line); }
+.top .wrap { padding-block: 28px 22px; display: grid; grid-template-columns: 1fr auto; gap: 12px 24px; align-items: end; }
+.kicker { font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.top h1 { font-size: clamp(2.3rem, 7vw, 3.6rem); font-weight: 800; letter-spacing: -.02em; }
+.top h1 span { color: var(--accent); }
+.thesis { font-size: 1.25rem; color: var(--ink); padding: 10px 16px; border: 1px dashed var(--line); border-radius: 10px; background: var(--paper); min-width: 0; overflow-x: auto; }
+@media (max-width: 640px) { .top .wrap { grid-template-columns: 1fr; } .thesis { justify-self: start; } }
+
+/* navegació de fases */
+.phases { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--sheet); border-bottom: 1px solid var(--line); }
+.phases ol { list-style: none; margin: 0 auto; max-width: 860px; display: flex; gap: 4px; overflow-x: auto; padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); scrollbar-width: thin; }
+.phases a { display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; text-decoration: none; color: var(--ink); white-space: nowrap; border: 1px solid transparent; }
+.phases a:hover { background: var(--soft); }
+.phases a[aria-current="page"] { border-color: var(--c); background: var(--soft); }
+.phases .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: .9rem; background: var(--c); color: var(--sheet); }
+.phases .lbl { display: flex; flex-direction: column; line-height: 1.1; }
+.phases .lbl b { font-family: var(--display); font-weight: 700; font-size: .98rem; }
+.phases .lbl small { font-family: var(--mono); font-size: .68rem; color: var(--muted); letter-spacing: .03em; }
+
+/* vistes */
+main .wrap { padding-block: 32px 48px; }
+.view { display: grid; gap: 28px; }
+.view-head { display: grid; gap: 8px; }
+.eyebrow { font-family: var(--mono); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ph, var(--accent)); font-weight: 600; }
+.lead { font-size: 1.12rem; color: var(--muted); max-width: 65ch; }
+.view[data-ph="1"] { --ph: var(--p1); } .view[data-ph="2"] { --ph: var(--p2); } .view[data-ph="3"] { --ph: var(--p3); }
+.view[data-ph="4"] { --ph: var(--p4); } .view[data-ph="5"] { --ph: var(--p5); }
+.block { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; gap: 14px; min-width: 0; }
+.block > h3 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.tag { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ph, var(--accent)); border: 1px solid currentColor; border-radius: 4px; padding: 1px 6px; font-weight: 600; }
+.prose { display: grid; gap: 10px; max-width: 68ch; }
+.prose ul, .prose ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.mathbox { overflow-x: auto; padding: 4px 0; }
+.note { border-left: 4px solid var(--warn); background: var(--warn-bg); padding: 12px 16px; border-radius: 0 8px 8px 0; display: grid; gap: 6px; }
+.note b.t { font-family: var(--display); color: var(--warn); }
+.key { border-left: 4px solid var(--ph, var(--accent)); background: var(--soft); padding: 12px 16px; border-radius: 0 8px 8px 0; display: grid; gap: 6px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .97rem; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: middle; }
+th { font-family: var(--mono); font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+td.num, .tab { font-variant-numeric: tabular-nums; }
+code, kbd { font-family: var(--mono); font-size: .9em; background: var(--soft); padding: 1px 6px; border-radius: 4px; }
+
+/* botons */
+.btn { font: inherit; font-weight: 700; font-size: .95rem; border-radius: 8px; padding: 8px 16px; border: 1px solid var(--line); background: var(--sheet); color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.linkbtn { font: inherit; font-size: .92rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 2px 0; text-decoration: underline; text-underline-offset: 3px; }
+.linkbtn:disabled { color: var(--muted); text-decoration: none; cursor: not-allowed; opacity: .7; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* opció múltiple */
+.mc { display: grid; gap: 10px; }
+.mc .qtext { font-weight: 700; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+.opt { font: inherit; text-align: left; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--sheet); color: var(--ink); cursor: pointer; min-width: 0; overflow-x: auto; }
+.opt:hover:not(:disabled) { border-color: var(--accent); background: var(--soft); }
+.opt.right { border-color: var(--ok); background: var(--ok-bg); }
+.opt.wrong { border-color: var(--ko); background: var(--ko-bg); }
+.opt:disabled { cursor: default; }
+.fb { padding: 10px 14px; border-radius: 8px; font-size: .97rem; }
+.fb.ok { background: var(--ok-bg); color: var(--ink); border: 1px solid var(--ok); }
+.fb.ko { background: var(--ko-bg); color: var(--ink); border: 1px solid var(--ko); }
+.fb.warn { background: var(--warn-bg); color: var(--ink); border: 1px solid var(--warn); }
+.fb b { font-family: var(--display); }
+.fb.ok b { color: var(--ok); } .fb.ko b { color: var(--ko); } .fb.warn b { color: var(--warn); }
+
+/* control lliscant */
+.ctrl { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+.ctrl label { font-weight: 700; min-width: 4.5em; }
+.ctrl output { font-family: var(--mono); font-variant-numeric: tabular-nums; min-width: 3.5em; text-align: right; }
+input[type="range"] { width: 100%; accent-color: var(--ph, var(--accent)); }
+input[type="number"], input[type="text"], textarea { font: inherit; color: var(--ink); background: var(--sheet); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+textarea { width: 100%; min-height: 90px; resize: vertical; }
+
+/* hort */
+.garden { display: grid; grid-template-columns: minmax(0, 240px) 1fr; gap: 20px; align-items: center; }
+.garden svg { width: 100%; max-width: 240px; height: auto; }
+.readout { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 1.05rem; display: grid; gap: 4px; }
+.readout .big { font-size: 1.6rem; font-family: var(--display); font-weight: 800; }
+@media (max-width: 560px) { .garden { grid-template-columns: 1fr; } .garden svg { max-width: 220px; } }
+
+/* detectiu de propietats */
+.prop-table td:first-child { min-width: 170px; }
+.eq { font-family: var(--mono); font-weight: 600; }
+.eq.yes { color: var(--ok); } .eq.no { color: var(--ko); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { font: inherit; font-size: .85rem; border: 0; background: var(--sheet); color: var(--ink); padding: 5px 10px; cursor: pointer; white-space: nowrap; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button.on-ok { background: var(--ok-bg); color: var(--ok); font-weight: 700; }
+.seg button.on-ko { background: var(--ko-bg); color: var(--ko); font-weight: 700; }
+
+/* passos */
+.steps { display: grid; gap: 6px; }
+.steps .step { overflow-x: auto; }
+
+/* sessions */
+.sessions { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.session { border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: var(--sheet); display: grid; gap: 6px; align-content: start; }
+.session .sn { font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.session ul { margin: 0; padding-left: 1.1em; font-size: .95rem; display: grid; gap: 2px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+
+/* exercicis */
+.filters { display: grid; gap: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: .88rem; border: 1px solid var(--line); background: var(--sheet); color: var(--ink); padding: 5px 12px; border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ph, var(--accent)); color: var(--sheet); border-color: var(--ph, var(--accent)); font-weight: 700; }
+.progress { display: grid; gap: 6px; }
+.bar { height: 10px; background: var(--soft); border-radius: 999px; overflow: hidden; }
+.bar > i { display: block; height: 100%; background: var(--ph, var(--accent)); width: 0; transition: width .4s; }
+.exlist { display: grid; gap: 16px; }
+.ex { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+.ex.done { border-color: var(--ok); }
+.ex-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: .82rem; }
+.ex-id { font-family: var(--display); font-weight: 800; font-size: 1.05rem; }
+.lvl { font-family: var(--mono); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.lvl.l1 { background: var(--ok-bg); color: var(--ok); } .lvl.l2 { background: var(--warn-bg); color: var(--warn); } .lvl.l3 { background: var(--ko-bg); color: var(--ko); }
+.blkname { color: var(--muted); }
+.donebadge { margin-left: auto; color: var(--ok); font-weight: 700; }
+.ex .q { font-size: 1.15rem; overflow-x: auto; padding: 4px 0; }
+.ans { display: flex; gap: 8px; flex-wrap: wrap; }
+.ans input { flex: 1 1 220px; min-width: 0; font-family: var(--mono); font-size: 1.05rem; }
+.kbd { display: flex; flex-wrap: wrap; gap: 4px; }
+.kbd button { font-family: var(--mono); font-size: .92rem; min-width: 40px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); cursor: pointer; }
+.kbd button:hover { border-color: var(--accent); }
+.preview { font-size: .92rem; color: var(--muted); min-height: 1.6em; overflow-x: auto; }
+.preview .pv { color: var(--ink); }
+.preview:empty { display: none; }
+.tools { display: flex; gap: 16px; flex-wrap: wrap; }
+.hint, .sol { padding: 10px 14px; border-radius: 8px; background: var(--soft); overflow-x: auto; }
+.sol { border: 1px dashed var(--line); }
+
+/* autoavaluació */
+.self { display: grid; gap: 10px; }
+.self-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.light { display: inline-flex; gap: 6px; }
+.light button { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--line); background: var(--sheet); cursor: pointer; display: grid; place-items: center; font-weight: 700; font-size: .8rem; color: var(--muted); }
+.light button[data-v="g"].on { background: var(--ok); border-color: var(--ok); color: var(--sheet); }
+.light button[data-v="y"].on { background: var(--warn); border-color: var(--warn); color: var(--sheet); }
+.light button[data-v="r"].on { background: var(--ko); border-color: var(--ko); color: var(--sheet); }
+@media (max-width: 520px) { .self-row { grid-template-columns: 1fr; } }
+.score { font-family: var(--display); font-size: 2rem; font-weight: 800; color: var(--ph); }
+
+/* peu */
+footer { border-top: 1px solid var(--line); background: var(--sheet); }
+footer .wrap { padding-block: 22px 28px; display: grid; gap: 8px; font-size: .92rem; color: var(--muted); }
+footer .linkbtn { font-size: inherit; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { enableMenu: false }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg-full.js"></script>
+
+<header class="top">
+  <div class="wrap">
+    <div>
+      <p class="kicker">4t d'ESO · Matemàtiques B · Seqüència 5E</p>
+      <h1>Radicals<span>.</span></h1>
+    </div>
+    <div class="thesis">\(\sqrt[n]{a}=b \;\Longleftrightarrow\; b^n=a\)</div>
+  </div>
+</header>
+
+<nav class="phases" aria-label="Fases de la seqüència">
+  <ol>
+    <li><a href="#inici" data-v="inici" style="--c: var(--muted)"><span class="n">0</span><span class="lbl"><b>Inici</b><small>Guia</small></span></a></li>
+    <li><a href="#implica" data-v="implica" style="--c: var(--p1)"><span class="n">1</span><span class="lbl"><b>Implica't</b><small>Sessió 1</small></span></a></li>
+    <li><a href="#explora" data-v="explora" style="--c: var(--p2)"><span class="n">2</span><span class="lbl"><b>Explora</b><small>Sessió 1</small></span></a></li>
+    <li><a href="#explica" data-v="explica" style="--c: var(--p3)"><span class="n">3</span><span class="lbl"><b>Explica</b><small>Sessions 2–3</small></span></a></li>
+    <li><a href="#aplica" data-v="aplica" style="--c: var(--p4)"><span class="n">4</span><span class="lbl"><b>Aplica</b><small>Sessions 2–4 · casa</small></span></a></li>
+    <li><a href="#avalua" data-v="avalua" style="--c: var(--p5)"><span class="n">5</span><span class="lbl"><b>Avalua</b><small>Sessió 4</small></span></a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- ================= INICI ================= -->
+<section class="view" id="v-inici" data-ph="0">
+  <div class="view-head">
+    <p class="eyebrow">Abans de començar</p>
+    <h2>Com funciona aquesta seqüència</h2>
+    <p class="lead">Treballaràs els radicals en cinc fases: primer et plantejaràs un repte, després investigaràs, formalitzaràs el que has descobert, ho aplicaràs i, finalment, comprovaràs què has après.</p>
+  </div>
+
+  <div class="block">
+    <h3>Què aprendràs</h3>
+    <ul class="prose" style="padding-left:1.2em">
+      <li>Què és un radical i quins elements té (índex, radicand i signe radical).</li>
+      <li>Passar de radical a potència d'exponent fraccionari, i al revés.</li>
+      <li>Multiplicar, dividir, elevar a una potència i calcular l'arrel d'un radical.</li>
+      <li>Extreure i introduir factors en un radical.</li>
+      <li>Sumar i restar radicals semblants.</li>
+      <li>Racionalitzar denominadors amb una arrel quadrada o amb un binomi.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3>Pla de les quatre sessions</h3>
+    <div class="sessions">
+      <div class="session"><span class="sn">Sessió 1</span>
+        <ul><li><span class="dot" style="background:var(--p1)"></span>Implica't (15 min)</li><li><span class="dot" style="background:var(--p2)"></span>Explora (40 min)</li></ul></div>
+      <div class="session"><span class="sn">Sessió 2</span>
+        <ul><li><span class="dot" style="background:var(--p3)"></span>Explica, apartats 1–3</li><li><span class="dot" style="background:var(--p4)"></span>Aplica: blocs A i B, nivell 1</li></ul></div>
+      <div class="session"><span class="sn">Sessió 3</span>
+        <ul><li><span class="dot" style="background:var(--p3)"></span>Explica, apartats 4–6</li><li><span class="dot" style="background:var(--p4)"></span>Aplica: blocs C, D i E</li></ul></div>
+      <div class="session"><span class="sn">Sessió 4</span>
+        <ul><li><span class="dot" style="background:var(--p4)"></span>Aplica: blocs F i G (30 min)</li><li><span class="dot" style="background:var(--p5)"></span>Avalua (25 min)</li></ul></div>
+    </div>
+    <p class="lead" style="font-size:1rem">A casa: exercicis de nivell 2 i 3 en línia i els exercicis de la llibreta (els trobaràs al final d'Aplica).</p>
+  </div>
+
+  <div class="block">
+    <h3>Com escriure les respostes</h3>
+    <p class="prose">Escriu amb el teclat o fes servir els botons que hi ha sota de cada resposta. A sota veuràs com interpreta la pàgina el que has escrit: comprova-ho abans de prémer <b>Comprova</b>.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Vols escriure</th><th>Escriu</th><th>Botó</th></tr></thead>
+      <tbody>
+        <tr><td>\(3\sqrt{2}\)</td><td><code>3√2</code></td><td><code>√( )</code></td></tr>
+        <tr><td>\(2\sqrt[3]{4}\)</td><td><code>2∛4</code></td><td><code>∛( )</code></td></tr>
+        <tr><td>\(6\sqrt[4]{3}\)</td><td><code>6∜3</code></td><td><code>∜( )</code></td></tr>
+        <tr><td>\(\sqrt[12]{7}\)</td><td><code>arrel(12; 7)</code></td><td><code>ⁿ√</code></td></tr>
+        <tr><td>\(8ab\sqrt{3a}\)</td><td><code>8ab√(3a)</code></td><td>Parèntesis si el radicand té més d'un factor</td></tr>
+        <tr><td>\(6^{\frac{2}{5}}\)</td><td><code>6^(2/5)</code></td><td><code>^</code></td></tr>
+        <tr><td>\(\dfrac{\sqrt6-\sqrt2}{2}\)</td><td><code>(√6-√2)/2</code></td><td><code>/</code></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b class="t">Important</b><p>Si el radicand té més d'un factor, posa'l entre parèntesis: <code>√(3a)</code>. Si escrius <code>√3a</code>, la pàgina entén \(\sqrt{3}\,a\). Amb lletres, suposem sempre que representen nombres positius.</p></div>
+  </div>
+</section>
+
+<!-- ================= IMPLICA'T ================= -->
+<section class="view" id="v-implica" data-ph="1" hidden>
+  <div class="view-head">
+    <p class="eyebrow">Fase 1 · Implica't</p>
+    <h2>Nombres que no s'acaben mai</h2>
+    <p class="lead">Tres situacions reals on apareixen nombres que no podem escriure exactament amb decimals. Resol-les i pensa per què passa.</p>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Repte 1</span> L'hort de 50 m²</h3>
+    <p class="prose">L'institut vol fer un hort quadrat de 50 m² exactes. Mou el control (o escriu un valor) per trobar quant ha de fer el costat.</p>
+    <div class="garden">
+      <svg viewBox="0 0 230 230" role="img" aria-label="Quadrat de l'hort sobre una quadrícula d'1 metre">
+        <g id="gGrid"></g>
+        <rect id="gSq" x="15" y="15" width="0" height="0" fill="var(--p1)" fill-opacity=".22" stroke="var(--p1)" stroke-width="2"></rect>
+        <text x="15" y="226" font-size="10" fill="var(--muted)" font-family="JetBrains Mono, monospace">quadrícula d'1 m</text>
+      </svg>
+      <div style="display:grid;gap:14px;min-width:0">
+        <div class="ctrl"><label for="gSide">Costat</label><input type="range" id="gSide" min="0" max="10" step="0.01" value="6"><output id="gSideOut">6,00</output></div>
+        <div class="row"><label for="gSideNum">Valor precís (m):</label><input type="number" id="gSideNum" min="0" max="10" step="0.0001" value="6" style="width:9em"></div>
+        <div class="readout"><span>Àrea</span><span class="big" id="gArea">36,00 m²</span><span id="gMsg" style="font-family:var(--body);font-size:.95rem;color:var(--muted)">Ens falten 14 m².</span></div>
+      </div>
+    </div>
+    <div class="row"><button class="btn" id="gReveal">Hi ha algun decimal exacte?</button></div>
+    <div class="key" id="gExplain" hidden>
+      <p>No. El costat ha de complir \(\ell^2=50\), és a dir, \(\ell=\sqrt{50}=7{,}0710678118\ldots\) Té infinites xifres decimals i no són periòdiques: és un <b>nombre irracional</b>.</p>
+      <p>Per treballar amb el valor exacte, el deixem escrit com a radical: \(\sqrt{50}\). En aquesta seqüència aprendràs a operar-hi i a simplificar-lo: veuràs que \(\sqrt{50}=5\sqrt{2}\).</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Repte 2</span> El secret del full DIN A4</h3>
+    <p class="prose">Un full A4 fa 21 cm × 29,7 cm. Quan el doblegues per la meitat obtens un A5, que té exactament la mateixa forma. Calcula \(29{,}7 : 21\).</p>
+    <div class="mc" id="mcA4"></div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Repte 3</span> L'altar de Delos</h3>
+    <p class="prose">Segons una llegenda grega, l'oracle va demanar als habitants de Delos un altar cúbic amb el doble de volum que l'antic. Si l'altar antic tenia una aresta d'1 m, quina aresta ha de tenir el nou?</p>
+    <div class="mc" id="mcDelos"></div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Pensa i comparteix</span> Per a la posada en comú</h3>
+    <ol class="prose">
+      <li>Què tenen en comú els tres nombres que han aparegut: \(\sqrt{50}\), \(\sqrt{2}\) i \(\sqrt[3]{2}\)?</li>
+      <li>Per què creus que els matemàtics prefereixen escriure \(\sqrt2\) en lloc de \(1{,}414\)?</li>
+      <li>Es pot calcular l'arrel quadrada d'un nombre negatiu? I l'arrel cúbica?</li>
+    </ol>
+    <label for="thinkNote" class="sr">Les teves idees</label>
+    <textarea id="thinkNote" placeholder="Anota-hi les teves idees (només es guarden en aquest navegador)."></textarea>
+  </div>
+</section>
+
+<!-- ================= EXPLORA ================= -->
+<section class="view" id="v-explora" data-ph="2" hidden>
+  <div class="view-head">
+    <p class="eyebrow">Fase 2 · Explora</p>
+    <h2>Investiga com es comporten les arrels</h2>
+    <p class="lead">Experimenta amb els controls i fes-te preguntes. L'objectiu és que descobreixis tu les regles abans de llegir-les a l'apartat Explica.</p>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Activitat 1</span> Arrels i potències: són el mateix?</h3>
+    <p class="prose">Primer fes una predicció, sense calculadora:</p>
+    <div class="mc" id="mcPredict"></div>
+    <p class="prose">Ara mou els controls i compara els dos valors.</p>
+    <div style="display:grid;gap:8px">
+      <div class="ctrl"><label for="xA">Base \(a\)</label><input type="range" id="xA" min="2" max="10" step="1" value="8"><output id="xAo">8</output></div>
+      <div class="ctrl"><label for="xM">Exponent \(m\)</label><input type="range" id="xM" min="1" max="6" step="1" value="2"><output id="xMo">2</output></div>
+      <div class="ctrl"><label for="xN">Índex \(n\)</label><input type="range" id="xN" min="2" max="6" step="1" value="3"><output id="xNo">3</output></div>
+    </div>
+    <div class="grid2">
+      <div class="key" style="--ph:var(--p2)"><span class="kicker">Radical</span><div class="mathbox" id="xRad"></div></div>
+      <div class="key" style="--ph:var(--p2)"><span class="kicker">Potència</span><div class="mathbox" id="xPow"></div></div>
+    </div>
+    <div class="note"><b class="t">Repte</b><p>Troba tres combinacions de \(a\), \(m\) i \(n\) on el resultat sigui un nombre enter. Què tenen en comú?</p></div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Activitat 2</span> Detectiu de propietats</h3>
+    <p class="prose">Algunes d'aquestes igualtats són certes per a qualsevol valor de \(a\) i \(b\), i d'altres no. Canvia els valors, observa i decideix. Compte: n'hi ha prou amb un sol contraexemple per descartar una propietat.</p>
+    <div class="row">
+      <label for="pa">\(a=\)</label><input type="number" id="pa" value="9" min="0" step="any" style="width:7em">
+      <label for="pb">\(b=\)</label><input type="number" id="pb" value="4" min="0.01" step="any" style="width:7em">
+    </div>
+    <div class="table-wrap"><table class="prop-table">
+      <thead><tr><th>Igualtat</th><th>Esquerra</th><th>Dreta</th><th></th><th>És sempre certa?</th></tr></thead>
+      <tbody id="propBody"></tbody>
+    </table></div>
+    <div id="propFb"></div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Conclusions</span> Escriu a la llibreta</h3>
+    <ol class="prose">
+      <li>Com s'escriu \(\sqrt[n]{a^m}\) en forma de potència?</li>
+      <li>Quines operacions «passen a través» de l'arrel i quines no?</li>
+      <li>Un exemple numèric que demostri que \(\sqrt{a+b}\neq\sqrt a+\sqrt b\).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= EXPLICA ================= -->
+<section class="view" id="v-explica" data-ph="3" hidden>
+  <div class="view-head">
+    <p class="eyebrow">Fase 3 · Explica</p>
+    <h2>Els radicals, pas a pas</h2>
+    <p class="lead">Aquí tens formalitzat el que has investigat. Als exemples, prem «Pas següent» i intenta anticipar cada pas abans de veure'l.</p>
+    <div class="chips" aria-label="Apartats">
+      <a class="chip" href="#ex1" data-jump="ex1">1. Definició</a>
+      <a class="chip" href="#ex2" data-jump="ex2">2. Exponent fraccionari</a>
+      <a class="chip" href="#ex3" data-jump="ex3">3. Operacions</a>
+      <a class="chip" href="#ex4" data-jump="ex4">4. Extreure i introduir</a>
+      <a class="chip" href="#ex5" data-jump="ex5">5. Suma i resta</a>
+      <a class="chip" href="#ex6" data-jump="ex6">6. Racionalització</a>
+    </div>
+  </div>
+
+  <div class="block" id="ex1">
+    <h3><span class="tag">1</span> Què és un radical</h3>
+    <div class="mathbox">\[\sqrt[n]{a}=b\;\Longleftrightarrow\; b^n=a\qquad n\in\mathbb{N},\ n\ge 2\]</div>
+    <p class="prose">Exemple: \(\sqrt[4]{16}=2\) perquè \(2^4=16\).</p>
+    <div class="grid2">
+      <div class="table-wrap"><table>
+        <tbody>
+          <tr><td>\(n\)</td><td>índex</td></tr>
+          <tr><td>\(a\)</td><td>radicand</td></tr>
+          <tr><td>\(\sqrt{\phantom{a}}\)</td><td>signe radical</td></tr>
+          <tr><td>\(b\)</td><td>arrel</td></tr>
+        </tbody></table></div>
+      <div class="prose">
+        <p><b>Casos particulars</b></p>
+        <p>\(\sqrt[2]{a}=\sqrt{a}\): arrel quadrada (no s'escriu l'índex).</p>
+        <p>\(\sqrt[3]{a}\): arrel cúbica.</p>
+      </div>
+    </div>
+    <div class="note"><b class="t">Compte amb els signes</b>
+      <p>Si l'índex és <b>parell</b>, el radicand ha de ser positiu o zero: \(\sqrt{-4}\) no és cap nombre real. Si l'índex és <b>senar</b>, el radicand pot ser negatiu: \(\sqrt[3]{-8}=-2\) perquè \((-2)^3=-8\).</p>
+      <p>Per conveni, \(\sqrt{a}\) indica l'arrel positiva: \(\sqrt{9}=3\), encara que \((-3)^2\) també sigui 9.</p></div>
+  </div>
+
+  <div class="block" id="ex2">
+    <h3><span class="tag">2</span> Potència d'exponent fraccionari</h3>
+    <p class="prose">Un radical és una potència d'exponent fraccionari. Radicar és l'operació inversa de potenciar.</p>
+    <div class="key"><div class="mathbox">\[\sqrt[n]{a^m}=a^{\frac{m}{n}}\qquad\qquad \left(\sqrt[n]{a}\right)^n=\sqrt[n]{a^n}=a^{\frac{n}{n}}=a\]</div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Radical</th><th>Índex</th><th>Radicand</th><th>Potència</th></tr></thead>
+      <tbody>
+        <tr><td>\(\sqrt[5]{3}\)</td><td class="num">5</td><td>\(3\)</td><td>\(3^{\frac15}\)</td></tr>
+        <tr><td>\(\sqrt[3]{4}\)</td><td class="num">3</td><td>\(4=2^2\)</td><td>\(4^{\frac13}=2^{\frac23}\)</td></tr>
+        <tr><td>\(\sqrt[4]{27}=\sqrt[4]{3^3}\)</td><td class="num">4</td><td>\(27=3^3\)</td><td>\(27^{\frac14}=3^{\frac34}\)</td></tr>
+      </tbody></table></div>
+    <p class="prose">Gràcies a aquesta equivalència, totes les propietats de les potències que ja coneixes serveixen també per als radicals.</p>
+  </div>
+
+  <div class="block" id="ex3">
+    <h3><span class="tag">3</span> Operacions amb radicals</h3>
+    <p class="prose">Per multiplicar i dividir, els radicals han de tenir el <b>mateix índex</b>.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Operació</th><th>Regla</th><th>Exemple</th></tr></thead>
+      <tbody>
+        <tr><td>Producte</td><td>\(\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{a\cdot b}\)</td><td>\(\sqrt[3]{5}\cdot\sqrt[3]{6}=\sqrt[3]{30}\)</td></tr>
+        <tr><td>Quocient</td><td>\(\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}=\sqrt[n]{\dfrac{a}{b}}\)</td><td>\(\dfrac{\sqrt[4]{8}}{\sqrt[4]{2}}=\sqrt[4]{\tfrac82}=\sqrt[4]{4}\)</td></tr>
+        <tr><td>Potència</td><td>\(\left(\sqrt[n]{a}\right)^m=\sqrt[n]{a^m}\)</td><td>\(\left(\sqrt[3]{2}\right)^5=\sqrt[3]{2^5}=\sqrt[3]{32}\)</td></tr>
+        <tr><td>Arrel</td><td>\(\sqrt[m]{\sqrt[n]{a}}=\sqrt[m\cdot n]{a}\)</td><td>\(\sqrt[3]{\sqrt[4]{7}}=\sqrt[12]{7}\)</td></tr>
+      </tbody></table></div>
+    <div class="note"><b class="t">L'error més freqüent</b>
+      <p>L'arrel <b>no</b> es reparteix sobre la suma ni la resta: \(\sqrt{9+16}=\sqrt{25}=5\), però \(\sqrt9+\sqrt{16}=3+4=7\). En canvi, sí que es reparteix sobre el producte i el quocient.</p></div>
+  </div>
+
+  <div class="block" id="ex4">
+    <h3><span class="tag">4</span> Extreure i introduir factors</h3>
+    <div class="key"><div class="mathbox">\[\text{Extreure: }\ \sqrt[n]{a^{n\cdot p}\cdot b}=a^p\cdot\sqrt[n]{b}\qquad\quad \text{Introduir: }\ a^p\cdot\sqrt[n]{b}=\sqrt[n]{a^{p\cdot n}\cdot b}\]</div></div>
+    <p class="prose"><b>Mètode per extreure:</b> descompon el radicand en factors primers, divideix cada exponent entre l'índex: el quocient surt fora i el residu es queda dins.</p>
+    <div class="steps" data-steps>
+      <div class="step">\(\sqrt[3]{162}\)</div>
+      <div class="step">\(=\sqrt[3]{2\cdot3^4}\quad\) (descomposició: \(162=2\cdot3^4\))</div>
+      <div class="step">\(=\sqrt[3]{2\cdot3^3\cdot3}\quad\) (busquem grups de 3 factors iguals)</div>
+      <div class="step">\(=3\sqrt[3]{2\cdot3}=3\sqrt[3]{6}\)</div>
+    </div>
+    <p class="prose" style="margin-top:6px"><b>Mètode per introduir:</b> el factor entra elevat a l'índex.</p>
+    <div class="steps" data-steps>
+      <div class="step">\(5^2\sqrt{3}\)</div>
+      <div class="step">\(=\sqrt{\left(5^2\right)^2\cdot3}=\sqrt{5^4\cdot3}\)</div>
+      <div class="step">\(=\sqrt{625\cdot3}=\sqrt{1875}\)</div>
+    </div>
+    <div class="note"><b class="t">Compte</b><p>Només s'introdueixen factors positius. El signe es queda fora: \(-2\sqrt3=-\sqrt{12}\).</p></div>
+  </div>
+
+  <div class="block" id="ex5">
+    <h3><span class="tag">5</span> Suma i resta</h3>
+    <p class="prose">Només es poden sumar o restar <b>radicals semblants</b>: els que tenen el mateix índex i el mateix radicand. Se sumen els coeficients, com quan sumes \(3x+2x\).</p>
+    <div class="key"><div class="mathbox">\[b\sqrt[n]{a}+c\sqrt[n]{a}-d\sqrt[n]{a}=(b+c-d)\sqrt[n]{a}\]</div></div>
+    <p class="prose">Exemple directe: \(6\sqrt[5]{4}+3\sqrt[5]{4}-2\sqrt[5]{4}=(6+3-2)\sqrt[5]{4}=7\sqrt[5]{4}\).</p>
+    <p class="prose">Sovint els radicals no semblen semblants fins que no se'n extreuen factors:</p>
+    <div class="steps" data-steps>
+      <div class="step">\(3\sqrt{12}-5\sqrt{48}+2\sqrt{192}\)</div>
+      <div class="step">\(=3\sqrt{2^2\cdot3}-5\sqrt{2^4\cdot3}+2\sqrt{2^6\cdot3}\)</div>
+      <div class="step">\(=3\cdot2\sqrt3-5\cdot4\sqrt3+2\cdot8\sqrt3\)</div>
+      <div class="step">\(=(6-20+16)\sqrt3=2\sqrt3\)</div>
+    </div>
+  </div>
+
+  <div class="block" id="ex6">
+    <h3><span class="tag">6</span> Racionalització</h3>
+    <p class="prose">Racionalitzar és transformar una fracció perquè no quedi cap arrel al denominador. Multipliquem numerador i denominador pel mateix nombre, i així la fracció no canvia de valor.</p>
+    <p class="prose"><b>Cas 1. Denominador amb una arrel quadrada:</b> multipliquem per aquesta mateixa arrel.</p>
+    <div class="key"><div class="mathbox">\[\frac{a}{\sqrt{b}}=\frac{a}{\sqrt{b}}\cdot\frac{\sqrt{b}}{\sqrt{b}}=\frac{a\sqrt{b}}{\left(\sqrt{b}\right)^2}=\frac{a\sqrt{b}}{b}\]</div></div>
+    <div class="steps" data-steps>
+      <div class="step">\(\dfrac{5}{\sqrt3}\)</div>
+      <div class="step">\(=\dfrac{5}{\sqrt3}\cdot\dfrac{\sqrt3}{\sqrt3}=\dfrac{5\sqrt3}{\left(\sqrt3\right)^2}\)</div>
+      <div class="step">\(=\dfrac{5\sqrt3}{3}\)</div>
+    </div>
+    <p class="prose" style="margin-top:6px"><b>Cas 2. Denominador amb una suma o resta amb arrels quadrades:</b> multipliquem pel <b>conjugat</b> del denominador. Així apareix una diferència de quadrats, \((x+y)(x-y)=x^2-y^2\), i les arrels desapareixen.</p>
+    <div class="table-wrap" style="max-width:420px"><table>
+      <thead><tr><th>Expressió</th><th>Conjugat</th></tr></thead>
+      <tbody>
+        <tr><td>\(\sqrt b-\sqrt c\)</td><td>\(\sqrt b+\sqrt c\)</td></tr>
+        <tr><td>\(\sqrt b+\sqrt c\)</td><td>\(\sqrt b-\sqrt c\)</td></tr>
+        <tr><td>\(b-\sqrt c\)</td><td>\(b+\sqrt c\)</td></tr>
+        <tr><td>\(b+\sqrt c\)</td><td>\(b-\sqrt c\)</td></tr>
+      </tbody></table></div>
+    <p class="prose"><b>Exemple 1</b></p>
+    <div class="steps" data-steps>
+      <div class="step">\(\dfrac{5}{\sqrt3-2}\)</div>
+      <div class="step">\(=\dfrac{5}{\sqrt3-2}\cdot\dfrac{\sqrt3+2}{\sqrt3+2}=\dfrac{5\sqrt3+10}{\left(\sqrt3\right)^2-2^2}\)</div>
+      <div class="step">\(=\dfrac{5\sqrt3+10}{3-4}=\dfrac{5\sqrt3+10}{-1}\)</div>
+      <div class="step">\(=-5\sqrt3-10\)</div>
+    </div>
+    <p class="prose" style="margin-top:6px"><b>Exemple 2</b></p>
+    <div class="steps" data-steps>
+      <div class="step">\(\dfrac{2+\sqrt5}{\sqrt2-\sqrt5}\)</div>
+      <div class="step">\(=\dfrac{2+\sqrt5}{\sqrt2-\sqrt5}\cdot\dfrac{\sqrt2+\sqrt5}{\sqrt2+\sqrt5}=\dfrac{2\sqrt2+2\sqrt5+\sqrt{10}+\sqrt{25}}{\left(\sqrt2\right)^2-\left(\sqrt5\right)^2}\)</div>
+      <div class="step">\(=\dfrac{2\sqrt2+2\sqrt5+\sqrt{10}+5}{2-5}=\dfrac{2\sqrt2+2\sqrt5+\sqrt{10}+5}{-3}\)</div>
+      <div class="step">\(=\dfrac{-2\sqrt2-2\sqrt5-\sqrt{10}-5}{3}\)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APLICA ================= -->
+<section class="view" id="v-aplica" data-ph="4" hidden>
+  <div class="view-head">
+    <p class="eyebrow">Fase 4 · Aplica</p>
+    <h2>Practica amb correcció immediata</h2>
+    <p class="lead">Tria el nivell i el bloc. Cada exercici té una pista i, després del primer intent, la solució. El teu progrés es guarda en aquest navegador.</p>
+  </div>
+
+  <div class="block filters">
+    <div class="progress">
+      <div class="row" style="justify-content:space-between"><b id="progTxt">0 de 0 resolts</b><span class="kicker" id="progLv"></span></div>
+      <div class="bar"><i id="progBar"></i></div>
+    </div>
+    <div class="chips" id="fLvl" aria-label="Nivell"></div>
+    <div class="chips" id="fBlk" aria-label="Bloc"></div>
+  </div>
+
+  <div class="exlist" id="exList"></div>
+
+  <div class="block">
+    <h3><span class="tag">A la llibreta</span> Més pràctica</h3>
+    <p class="prose">Fes aquests exercicis del dossier a la llibreta. Tria'ls segons el que t'hagi costat més a l'autoavaluació.</p>
+    <ul class="prose">
+      <li><b>Fitxa d'exercicis:</b> «Racionalitza», exercicis 1 a 7.</li>
+      <li><b>Radicals quadràtics i cúbics, activitat 1:</b> exercicis 1 a 25 (operacions combinades amb fraccions, potències i racionalització).</li>
+      <li><b>Activitat 2 (extreure factors):</b> exercicis 1 a 30, sobretot els que tenen fraccions dins del radical (24 a 30).</li>
+      <li><b>Activitat 3 (sumes i restes):</b> exercicis 1 a 9.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= AVALUA ================= -->
+<section class="view" id="v-avalua" data-ph="5" hidden>
+  <div class="view-head">
+    <p class="eyebrow">Fase 5 · Avalua</p>
+    <h2>Què has après?</h2>
+    <p class="lead">Respon el qüestionari sense mirar els apunts. Després fes l'autoavaluació i decideix què has de repassar.</p>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Part 1</span> Qüestionari</h3>
+    <div id="quiz" style="display:grid;gap:22px"></div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Part 2</span> Resposta oberta</h3>
+    <div class="exlist" id="evalOpen"></div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Resultat</span></h3>
+    <div class="row" style="gap:18px"><span class="score" id="scoreTxt">0 / 13</span><p id="scoreMsg" class="prose">Respon les preguntes per veure el resultat.</p></div>
+  </div>
+
+  <div class="block">
+    <h3><span class="tag">Part 3</span> Autoavaluació</h3>
+    <p class="prose">Marca com et sents amb cada objectiu: verd, ho domino; groc, encara dubto; vermell, no ho sé fer.</p>
+    <div class="self" id="selfList"></div>
+    <div id="selfAdvice"></div>
+    <label for="exitNote"><b>Bitllet de sortida:</b> què t'ha costat més i què faràs per millorar-ho?</label>
+    <textarea id="exitNote" placeholder="Escriu-ho aquí (només es guarda en aquest navegador)."></textarea>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="eas-llicencia"><button type="button" class="eas-autoria" popovertarget="eas-declaracio-ia" aria-haspopup="dialog" title="Mostra la declaració d’ús d’IA">Autoria<span aria-hidden="true">&nbsp;ⓘ</span>:</button> © 2026 by <a href="https://elenaas-math.github.io/">Elena Álvarez Spagnolo</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="Creative Commons"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="Reconeixement"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="No comercial"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="Sense obra derivada"></p>
+    <div id="eas-declaracio-ia" class="eas-ia" popover role="dialog" aria-labelledby="eas-titol-ia">
+      <p><strong id="eas-titol-ia">Declaració d’ús d’IA:</strong> aquest contingut s’ha elaborat amb el suport d’eines d’intel·ligència artificial generativa: Claude, en tasques de programació, estructuració i part de la redacció, i ChatGPT, en la generació de les imatges de presentació (miniatures). Els continguts de base són d’elaboració pròpia. L’autora n’ha dissenyat la proposta didàctica i n’ha revisat, adaptat i validat tot el contingut, i n’assumeix la plena responsabilitat.</p>
+      <button type="button" class="eas-tanca" popovertarget="eas-declaracio-ia" popovertargetaction="hide">Tanca</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Motor de correcció d'expressions amb radicals */
+const RAD = (() => {
+  const SUP = { '⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9' };
+
+  function tokenize(src) {
+    const s = src.replace(/\s+/g, '').replace(/[−–]/g, '-').replace(/[·×]/g, '*')
+      .replace(/:/g, '/').replace(/sqrt/gi, '√').replace(/cbrt/gi, '∛');
+    const toks = []; let i = 0;
+    while (i < s.length) {
+      const c = s[i];
+      if (/[0-9.]/.test(c)) {
+        let j = i; while (j < s.length && /[0-9.]/.test(s[j])) j++;
+        const v = parseFloat(s.slice(i, j));
+        if (isNaN(v)) throw new Error('Hi ha un número mal escrit.');
+        toks.push({ k: 'num', v }); i = j; continue;
+      }
+      if (SUP[c] !== undefined) {
+        let j = i, d = '';
+        while (j < s.length && SUP[s[j]] !== undefined) { d += SUP[s[j]]; j++; }
+        if (s[j] === '√') { toks.push({ k: 'root', n: +d }); i = j + 1; }
+        else { toks.push({ k: 'op', v: '^' }); toks.push({ k: 'num', v: +d }); i = j; }
+        continue;
+      }
+      if (c === '√') { toks.push({ k: 'root', n: 2 }); i++; continue; }
+      if (c === '∛') { toks.push({ k: 'root', n: 3 }); i++; continue; }
+      if (c === '∜') { toks.push({ k: 'root', n: 4 }); i++; continue; }
+      if (s.toLowerCase().startsWith('arrel', i)) { toks.push({ k: 'fn' }); i += 5; continue; }
+      if (/[a-zA-Z]/.test(c)) { toks.push({ k: 'var', v: c.toLowerCase() }); i++; continue; }
+      if ('+-*/^(),;'.includes(c)) { toks.push({ k: 'op', v: c === ';' ? ',' : c }); i++; continue; }
+      throw new Error('No reconec el caràcter «' + c + '».');
+    }
+    return toks;
+  }
+
+  function parse(str) {
+    if (!str || !str.trim()) throw new Error('Escriu una resposta.');
+    const t = tokenize(str); let p = 0;
+    const isOp = v => t[p] && t[p].k === 'op' && t[p].v === v;
+    const expect = v => {
+      if (!isOp(v)) throw new Error(v === ')' ? 'Falta tancar un parèntesi.' : 'Falta «' + (v === ',' ? ';' : v) + '».');
+      p++;
+    };
+    const startsAtom = () => {
+      const k = t[p];
+      return k && (k.k === 'num' || k.k === 'var' || k.k === 'root' || k.k === 'fn' || (k.k === 'op' && k.v === '('));
+    };
+    function expr() {
+      let a = term();
+      while (isOp('+') || isOp('-')) { const o = t[p++].v; const b = term(); a = { t: o === '+' ? 'add' : 'sub', a, b }; }
+      return a;
+    }
+    function term() {
+      let a = unary();
+      for (;;) {
+        if (isOp('*')) { p++; a = { t: 'mul', a, b: unary() }; }
+        else if (isOp('/')) { p++; a = { t: 'div', a, b: unary() }; }
+        else if (startsAtom()) { a = { t: 'mul', a, b: power(), imp: true }; }
+        else break;
+      }
+      return a;
+    }
+    function unary() {
+      if (isOp('-')) { p++; return { t: 'neg', a: unary() }; }
+      if (isOp('+')) { p++; return unary(); }
+      return power();
+    }
+    function power() {
+      let a = atom();
+      if (isOp('^')) { p++; a = { t: 'pow', a, b: unary() }; }
+      return a;
+    }
+    function atom() {
+      const k = t[p];
+      if (!k) throw new Error('L\'expressió està incompleta.');
+      if (k.k === 'num') { p++; return { t: 'num', v: k.v }; }
+      if (k.k === 'var') { p++; return { t: 'var', n: k.v }; }
+      if (k.k === 'op' && k.v === '(') { p++; const e = expr(); expect(')'); return { t: 'par', a: e }; }
+      if (k.k === 'root') { p++; return { t: 'root', n: { t: 'num', v: k.n }, x: radicand() }; }
+      if (k.k === 'fn') { p++; expect('('); const n = expr(); expect(','); const x = expr(); expect(')'); return { t: 'root', n, x }; }
+      throw new Error('Hi ha un signe «' + (k.v === ',' ? ';' : k.v) + '» fora de lloc.');
+    }
+    function radicand() {
+      const k = t[p];
+      if (!k) throw new Error('Falta el radicand després de l\'arrel.');
+      if (k.k === 'op' && k.v === '(') { p++; const e = expr(); expect(')'); return e; }
+      if (k.k === 'num' || k.k === 'var' || k.k === 'root' || k.k === 'fn') return atom();
+      throw new Error('Després del signe d\'arrel ha d\'anar el radicand.');
+    }
+    const r = expr();
+    if (p < t.length) {
+      const k = t[p];
+      throw new Error(k.k === 'op' && k.v === ')' ? 'Sobra un parèntesi de tancament.' : 'Sobra alguna cosa al final de l\'expressió.');
+    }
+    return r;
+  }
+
+  function ev(n, env) {
+    switch (n.t) {
+      case 'num': return n.v;
+      case 'var': return env[n.n] !== undefined ? env[n.n] : NaN;
+      case 'par': return ev(n.a, env);
+      case 'neg': return -ev(n.a, env);
+      case 'add': return ev(n.a, env) + ev(n.b, env);
+      case 'sub': return ev(n.a, env) - ev(n.b, env);
+      case 'mul': return ev(n.a, env) * ev(n.b, env);
+      case 'div': return ev(n.a, env) / ev(n.b, env);
+      case 'pow': {
+        const b = ev(n.a, env), e = ev(n.b, env);
+        if (b < 0 && !Number.isInteger(e)) return NaN;
+        return Math.pow(b, e);
+      }
+      case 'root': {
+        const k = ev(n.n, env), x = ev(n.x, env);
+        if (!Number.isInteger(k) || k < 2) return NaN;
+        if (x < 0) return k % 2 === 1 ? -Math.pow(-x, 1 / k) : NaN;
+        return Math.pow(x, 1 / k);
+      }
+    }
+    return NaN;
+  }
+
+  function fmt(v) { return String(v).replace('.', '{,}'); }
+  const strip = n => (n.t === 'par' ? n.a : n);
+  function tex(n) {
+    switch (n.t) {
+      case 'num': return fmt(n.v);
+      case 'var': return n.n;
+      case 'par': return '\\left(' + tex(n.a) + '\\right)';
+      case 'neg': return '-' + (n.a.t === 'add' || n.a.t === 'sub' ? '\\left(' + tex(n.a) + '\\right)' : tex(n.a));
+      case 'add': return tex(n.a) + '+' + tex(n.b);
+      case 'sub': return tex(n.a) + '-' + tex(n.b);
+      case 'mul': {
+        const left = n.a.t === 'neg' && n.a !== undefined ? tex(n.a) : tex(n.a);
+        const bStartsNum = n.b.t === 'num' || (n.b.t === 'pow' && n.b.a.t === 'num');
+        const sep = !n.imp || bStartsNum ? '\\cdot ' : (n.b.t === 'root' ? '\\,' : '');
+        return left + sep + tex(n.b);
+      }
+      case 'div': return '\\dfrac{' + tex(strip(n.a)) + '}{' + tex(strip(n.b)) + '}';
+      case 'pow': {
+        const a = n.a;
+        const simple = a.t === 'num' || a.t === 'var' || a.t === 'par';
+        const base = simple ? tex(a) : '\\left(' + tex(a) + '\\right)';
+        return base + '^{' + tex(strip(n.b)) + '}';
+      }
+      case 'root': {
+        const k = n.n.t === 'num' && n.n.v === 2 ? '' : '[' + tex(n.n) + ']';
+        return '\\sqrt' + k + '{' + tex(n.x) + '}';
+      }
+    }
+    return '';
+  }
+
+  /* --- anàlisi de forma --- */
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; };
+  const hasVars = n => n.t === 'var' || ['a', 'b', 'x', 'n'].some(k => n[k] && typeof n[k] === 'object' && hasVars(n[k]));
+  const containsRoot = n => n.t === 'root' || ['a', 'b', 'x'].some(k => n[k] && typeof n[k] === 'object' && containsRoot(n[k]));
+
+  function mono(n) {
+    switch (n.t) {
+      case 'num': return { p: n.v, q: 1, v: {} };
+      case 'var': return { p: 1, q: 1, v: { [n.n]: 1 } };
+      case 'par': return mono(n.a);
+      case 'neg': { const m = mono(n.a); if (!m) return null; m.p = -m.p; return m; }
+      case 'mul': case 'div': {
+        const A = mono(n.a), B = mono(n.b); if (!A || !B) return null;
+        const v = { ...A.v };
+        const s = n.t === 'mul' ? 1 : -1;
+        for (const k in B.v) v[k] = (v[k] || 0) + s * B.v[k];
+        return n.t === 'mul' ? { p: A.p * B.p, q: A.q * B.q, v } : { p: A.p * B.q, q: A.q * B.p, v };
+      }
+      case 'pow': {
+        if (hasVars(n.b)) return null;
+        const e = ev(n.b, {}); if (!Number.isInteger(e)) return null;
+        const A = mono(n.a); if (!A) return null;
+        const v = {}; for (const k in A.v) v[k] = A.v[k] * e;
+        return e >= 0 ? { p: A.p ** e, q: A.q ** e, v } : { p: A.q ** -e, q: A.p ** -e, v };
+      }
+    }
+    return null;
+  }
+
+  function analyze(ast) {
+    const roots = []; let fracExp = false, nested = false;
+    (function walk(n, inDen) {
+      if (!n || typeof n !== 'object') return;
+      if (n.t === 'root') {
+        if (containsRoot(n.x)) nested = true;
+        roots.push({ node: n, inDen });
+        walk(n.x, inDen); return;
+      }
+      if (n.t === 'pow') {
+        if (!hasVars(n.b)) { const e = ev(n.b, {}); if (!Number.isInteger(e)) fracExp = true; }
+        walk(n.a, inDen); walk(n.b, inDen); return;
+      }
+      if (n.t === 'div') { walk(n.a, inDen); walk(n.b, true); return; }
+      walk(n.a, inDen); walk(n.b, inDen);
+    })(ast, false);
+
+    const keys = {}; const issues = [];
+    for (const r of roots) {
+      const k = ev(r.node.n, {});
+      if (r.inDen) issues.push('den');
+      const m = mono(r.node.x);
+      if (!m || !Number.isInteger(k)) continue;
+      let p = m.p, q = m.q;
+      if (!Number.isInteger(p) || !Number.isInteger(q)) continue;
+      const g = gcd(p, q); p /= g; q /= g;
+      if (q < 0) { p = -p; q = -q; }
+      if (q !== 1) issues.push('den');
+      if (Object.values(m.v).some(e => e < 0)) issues.push('den');
+      const P = Math.abs(p);
+      let reducible = P === 1 && Object.values(m.v).every(e => e === 0);
+      for (let f = 2; f ** k <= P; f++) if (P % (f ** k) === 0) { reducible = true; break; }
+      if (Object.values(m.v).some(e => e >= k)) reducible = true;
+      if (reducible) issues.push('extract');
+      const key = k + '|' + p + '/' + q + '|' + Object.keys(m.v).sort().map(x => x + m.v[x]).join('');
+      keys[key] = (keys[key] || 0) + 1;
+    }
+    if (Object.values(keys).some(c => c > 1)) issues.push('combine');
+    return { roots, fracExp, nested, issues };
+  }
+
+  const ENVS = [0, 1, 2].map(s => {
+    const e = {}; 'abcdefghijklmnopqrstuvwxyz'.split('').forEach((ch, i) => { e[ch] = 1.17 + ((i * 7 + s * 13) % 23) / 9.1; });
+    return e;
+  });
+
+  const MSG = {
+    den: 'El valor és correcte, però cal racionalitzar: no pot quedar cap arrel al denominador.',
+    extract: 'El valor és correcte, però encara pots extreure factors d\'algun radical (o calcular una arrel exacta).',
+    combine: 'El valor és correcte, però encara pots agrupar radicals semblants.',
+    frac: 'El valor és correcte, però no hi ha de quedar cap exponent fraccionari.',
+    nested: 'El valor és correcte, però no hi pot haver arrels dins d\'arrels: deixa-ho com una sola arrel.'
+  };
+
+  function check(type, expected, input) {
+    let ast;
+    try { ast = parse(input); } catch (e) { return { ok: false, kind: 'syntax', msg: e.message }; }
+    const eAst = parse(expected);
+    for (const env of ENVS) {
+      const a = ev(ast, env), b = ev(eAst, env);
+      if (!isFinite(a)) return { ok: false, kind: 'value', msg: 'Aquesta expressió no té un valor real. Revisa els signes i els parèntesis.' };
+      if (Math.abs(a - b) > 1e-7 * Math.max(1, Math.abs(b))) return { ok: false, kind: 'value', msg: 'El resultat no és correcte. Revisa els càlculs pas a pas.' };
+    }
+    const info = analyze(ast);
+    const form = m => ({ ok: false, kind: 'form', msg: m });
+    if (type === 'pow') {
+      if (info.roots.length) return form('El valor és correcte, però encara hi ha radicals: escriu-ho només amb potències.');
+      if (!info.fracExp) return form('El valor és correcte, però l\'exponent ha de ser una fracció.');
+      return { ok: true };
+    }
+    if (type === 'one') {
+      if (info.fracExp) return form(MSG.frac);
+      if (info.nested) return form(MSG.nested);
+      if (info.roots.length !== 1) return form('El valor és correcte, però ha de quedar una sola arrel.');
+      return { ok: true };
+    }
+    if (type === 'intro') {
+      const top = strip(ast);
+      if (top.t !== 'root' || info.roots.length !== 1) return form('El valor és correcte, però tots els factors han de quedar dins de l\'arrel.');
+      return { ok: true };
+    }
+    // simp
+    if (info.fracExp) return form(MSG.frac);
+    if (info.nested) return form(MSG.nested);
+    for (const k of ['den', 'extract', 'combine']) if (info.issues.includes(k)) return form(MSG[k]);
+    return { ok: true };
+  }
+
+  function toTeX(input) { return tex(parse(input)); }
+  return { parse, check, toTeX, ev, analyze };
+})();
+if (typeof module !== 'undefined') module.exports = RAD;
+
+/* Banc d'exercicis. q, sol: TeX. ans: sintaxi del motor. */
+const R = String.raw;
+const BLOCKS = {
+  A: 'Potències i radicals',
+  B: 'Operacions amb radicals',
+  C: 'Extreure i introduir factors',
+  D: 'Suma i resta',
+  E: 'Racionalització',
+  F: 'Operacions combinades',
+  G: 'Problemes amb context'
+};
+const I_POW = 'Escriu com a potència d\'exponent fraccionari.';
+const I_ONE = 'Escriu en forma d\'una única arrel.';
+const I_OP = 'Calcula i simplifica el resultat.';
+const I_EXT = 'Extreu tots els factors possibles del radical.';
+const I_INT = 'Introdueix dins del radical tots els factors.';
+const I_SUM = 'Calcula i simplifica.';
+const I_RAT = 'Racionalitza i simplifica.';
+const I_COMB = 'Efectua les operacions i simplifica el resultat.';
+
+const EX = [
+  // A
+  { id:'A1', lvl:1, blk:'A', ins:I_POW, type:'pow', q:R`\sqrt[5]{6^2}`, ans:'6^(2/5)',
+    hint:R`Recorda: \(\sqrt[n]{a^m}=a^{\frac{m}{n}}\). L'exponent del radicand va al numerador i l'índex, al denominador.`,
+    sol:R`\sqrt[5]{6^2}=6^{\frac{2}{5}}` },
+  { id:'A2', lvl:1, blk:'A', ins:I_POW, type:'pow', q:R`\sqrt[3]{a^2}`, ans:'a^(2/3)',
+    hint:R`Índex 3, exponent 2: la fracció és \(\frac{2}{3}\).`, sol:R`\sqrt[3]{a^2}=a^{\frac{2}{3}}` },
+  { id:'A3', lvl:1, blk:'A', ins:I_ONE, type:'one', q:R`3^{\frac{1}{2}}`, ans:'√3',
+    hint:R`El denominador de l'exponent és l'índex de l'arrel. Si l'índex és 2, no cal escriure'l.`, sol:R`3^{\frac{1}{2}}=\sqrt{3}` },
+  { id:'A4', lvl:1, blk:'A', ins:I_ONE, type:'one', q:R`2^{\frac{3}{4}}`, ans:'∜8',
+    hint:R`\(a^{\frac{m}{n}}=\sqrt[n]{a^m}\). Calcula també \(2^3\).`, sol:R`2^{\frac{3}{4}}=\sqrt[4]{2^3}=\sqrt[4]{8}` },
+  { id:'A5', lvl:2, blk:'A', ins:I_POW, type:'pow', q:R`\sqrt[4]{225}`, ans:'225^(1/4)',
+    hint:R`\(225=15^2\). Pots deixar \(225^{\frac14}\) o simplificar l'exponent.`, sol:R`\sqrt[4]{225}=225^{\frac{1}{4}}=\left(15^2\right)^{\frac14}=15^{\frac{1}{2}}` },
+  { id:'A6', lvl:2, blk:'A', ins:I_POW, type:'pow', q:R`\sqrt[3]{16\,a\,x^2}`, ans:'(16ax^2)^(1/3)',
+    hint:R`Tot el radicand queda elevat a \(\frac13\). Fes servir parèntesis: (16ax^2)^(1/3).`, sol:R`\sqrt[3]{16\,a\,x^2}=\left(16\,a\,x^2\right)^{\frac{1}{3}}=2^{\frac43}\,a^{\frac13}\,x^{\frac23}` },
+  { id:'A7', lvl:2, blk:'A', ins:I_ONE, type:'one', q:R`a^{\frac{2}{3}}\cdot b^{\frac{1}{3}}`, ans:'∛(a^2b)',
+    hint:R`Les dues potències tenen el mateix denominador: les dues arrels tenen índex 3.`, sol:R`a^{\frac23}\cdot b^{\frac13}=\sqrt[3]{a^2}\cdot\sqrt[3]{b}=\sqrt[3]{a^2\,b}` },
+  { id:'A8', lvl:2, blk:'A', ins:I_ONE, type:'one', q:R`\left(\tfrac{2}{3}\right)^{\frac{1}{2}}`, ans:'√(2/3)',
+    hint:R`Exponent \(\frac12\): arrel quadrada de tota la fracció.`, sol:R`\left(\tfrac{2}{3}\right)^{\frac12}=\sqrt{\tfrac{2}{3}}` },
+  { id:'A9', lvl:2, blk:'A', ins:I_ONE, type:'one', q:R`5^{\frac{3}{4}}\cdot 4^{\frac{3}{4}}\cdot x^{\frac{3}{4}}`, ans:'∜(8000x^3)',
+    hint:R`Mateix exponent: \(a^r\cdot b^r=(a\cdot b)^r\). Després passa a arrel d'índex 4.`, sol:R`5^{\frac34}\cdot4^{\frac34}\cdot x^{\frac34}=(20x)^{\frac34}=\sqrt[4]{(20x)^3}=\sqrt[4]{8000\,x^3}` },
+  { id:'A10', lvl:3, blk:'A', ins:I_ONE, type:'one', q:R`\dfrac{3^{\frac{2}{3}}}{2^{\frac{2}{3}}}`, ans:'∛(9/4)',
+    hint:R`\(\dfrac{a^r}{b^r}=\left(\dfrac ab\right)^r\).`, sol:R`\dfrac{3^{\frac23}}{2^{\frac23}}=\left(\tfrac32\right)^{\frac23}=\sqrt[3]{\left(\tfrac32\right)^2}=\sqrt[3]{\tfrac94}` },
+  // B
+  { id:'B1', lvl:1, blk:'B', ins:I_OP, type:'simp', q:R`\sqrt[3]{5}\cdot\sqrt[3]{6}`, ans:'∛30',
+    hint:R`Mateix índex: \(\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{a\cdot b}\).`, sol:R`\sqrt[3]{5}\cdot\sqrt[3]{6}=\sqrt[3]{5\cdot6}=\sqrt[3]{30}` },
+  { id:'B2', lvl:1, blk:'B', ins:I_OP, type:'simp', q:R`\sqrt[3]{5}\cdot\sqrt[3]{25}`, ans:'5',
+    hint:R`Multiplica els radicands. \(125\) és un cub perfecte?`, sol:R`\sqrt[3]{5}\cdot\sqrt[3]{25}=\sqrt[3]{125}=\sqrt[3]{5^3}=5` },
+  { id:'B3', lvl:1, blk:'B', ins:I_OP, type:'simp', q:R`\dfrac{\sqrt[4]{8}}{\sqrt[4]{2}}`, ans:'∜4',
+    hint:R`\(\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}=\sqrt[n]{\dfrac ab}\).`, sol:R`\dfrac{\sqrt[4]{8}}{\sqrt[4]{2}}=\sqrt[4]{\tfrac82}=\sqrt[4]{4}\;\left(=\sqrt{2}\right)` },
+  { id:'B4', lvl:1, blk:'B', ins:I_ONE, type:'one', q:R`\sqrt[3]{\sqrt[4]{7}}`, ans:'arrel(12;7)',
+    hint:R`\(\sqrt[m]{\sqrt[n]{a}}=\sqrt[m\cdot n]{a}\). Per escriure l'índex 12 fes servir el botó ⁿ√: arrel(12; 7).`, sol:R`\sqrt[3]{\sqrt[4]{7}}=\sqrt[3\cdot4]{7}=\sqrt[12]{7}` },
+  { id:'B5', lvl:2, blk:'B', ins:I_OP, type:'simp', q:R`\left(\sqrt[3]{2}\right)^5`, ans:'2∛4',
+    hint:R`\(\left(\sqrt[n]{a}\right)^m=\sqrt[n]{a^m}\). Després extreu factors de \(\sqrt[3]{32}\).`, sol:R`\left(\sqrt[3]{2}\right)^5=\sqrt[3]{2^5}=\sqrt[3]{2^3\cdot2^2}=2\sqrt[3]{4}` },
+  { id:'B6', lvl:2, blk:'B', ins:I_OP, type:'simp', q:R`\dfrac{\sqrt[4]{72}\cdot\sqrt[4]{3}}{\sqrt[4]{9}\cdot\sqrt[4]{4}}`, ans:'∜6',
+    hint:R`Tots tenen índex 4: ajunta-ho tot en una sola arrel i simplifica la fracció.`, sol:R`\sqrt[4]{\dfrac{72\cdot3}{9\cdot4}}=\sqrt[4]{\dfrac{216}{36}}=\sqrt[4]{6}` },
+  { id:'B7', lvl:2, blk:'B', ins:I_ONE, type:'one', q:R`\sqrt[4]{\sqrt[3]{\sqrt{3}}}`, ans:'arrel(24;3)',
+    hint:R`Multiplica tots els índexs. L'arrel quadrada té índex 2.`, sol:R`\sqrt[4]{\sqrt[3]{\sqrt{3}}}=\sqrt[4\cdot3\cdot2]{3}=\sqrt[24]{3}` },
+  { id:'B8', lvl:3, blk:'B', ins:I_ONE, type:'one', q:R`\sqrt[4]{a^2\,x\,\sqrt[3]{2\sqrt{3}}}`, ans:'arrel(24; 12a^12x^6)',
+    hint:R`Treballa de dins cap a fora: introdueix el 2 a \(\sqrt{3}\), després \(a^2x\) dins de l'arrel d'índex 6.`,
+    sol:R`2\sqrt3=\sqrt{12}\;\Rightarrow\;\sqrt[3]{\sqrt{12}}=\sqrt[6]{12}\;\Rightarrow\;a^2x\sqrt[6]{12}=\sqrt[6]{12\,a^{12}x^6}\;\Rightarrow\;\sqrt[4]{\sqrt[6]{12\,a^{12}x^6}}=\sqrt[24]{12\,a^{12}x^6}` },
+  // C
+  { id:'C1', lvl:1, blk:'C', ins:I_EXT, type:'simp', q:R`\sqrt{18}`, ans:'3√2',
+    hint:R`Descompon: \(18=2\cdot3^2\).`, sol:R`\sqrt{18}=\sqrt{2\cdot3^2}=3\sqrt{2}` },
+  { id:'C2', lvl:1, blk:'C', ins:I_EXT, type:'simp', q:R`\sqrt[3]{16}`, ans:'2∛2',
+    hint:R`\(16=2^4=2^3\cdot2\).`, sol:R`\sqrt[3]{16}=\sqrt[3]{2^3\cdot2}=2\sqrt[3]{2}` },
+  { id:'C3', lvl:1, blk:'C', ins:I_EXT, type:'simp', q:R`\sqrt{9a^3}`, ans:'3a√a',
+    hint:R`\(9=3^2\) i \(a^3=a^2\cdot a\). Escriu-ho com 3a√a.`, sol:R`\sqrt{9a^3}=\sqrt{3^2\cdot a^2\cdot a}=3a\sqrt{a}` },
+  { id:'C4', lvl:2, blk:'C', ins:I_EXT, type:'simp', q:R`\sqrt[3]{162}`, ans:'3∛6',
+    hint:R`\(162=2\cdot3^4\). Busca grups de tres factors iguals.`, sol:R`\sqrt[3]{162}=\sqrt[3]{2\cdot3^3\cdot3}=3\sqrt[3]{6}` },
+  { id:'C5', lvl:2, blk:'C', ins:I_EXT, type:'simp', q:R`\sqrt{192\,a^3\,b^2}`, ans:'8ab√(3a)',
+    hint:R`\(192=2^6\cdot3\). Si a l'arrel queden diversos factors, posa'ls entre parèntesis: √(3a).`, sol:R`\sqrt{2^6\cdot3\cdot a^2\cdot a\cdot b^2}=2^3\,a\,b\sqrt{3a}=8ab\sqrt{3a}` },
+  { id:'C6', lvl:2, blk:'C', ins:I_EXT, type:'simp', q:R`\sqrt[3]{625\,x^9\,y^6}`, ans:'5x^3y^2∛5',
+    hint:R`\(625=5^4\). Divideix cada exponent entre 3.`, sol:R`\sqrt[3]{5^3\cdot5\cdot x^9\cdot y^6}=5x^3y^2\sqrt[3]{5}` },
+  { id:'C7', lvl:2, blk:'C', ins:I_INT, type:'intro', q:R`5^2\sqrt{3}`, ans:'√1875',
+    hint:R`\(a^p\sqrt[n]{b}=\sqrt[n]{a^{p\cdot n}\,b}\). El factor entra elevat a l'índex.`, sol:R`5^2\sqrt3=\sqrt{5^4\cdot3}=\sqrt{1875}` },
+  { id:'C8', lvl:2, blk:'C', ins:I_INT, type:'intro', q:R`2\sqrt[3]{3}`, ans:'∛24',
+    hint:R`El 2 entra al radicand elevat a 3.`, sol:R`2\sqrt[3]{3}=\sqrt[3]{2^3\cdot3}=\sqrt[3]{24}` },
+  { id:'C9', lvl:3, blk:'C', ins:I_EXT, type:'simp', q:R`2\cdot\sqrt[4]{243}`, ans:'6∜3',
+    hint:R`\(243=3^5\).`, sol:R`2\sqrt[4]{3^4\cdot3}=2\cdot3\sqrt[4]{3}=6\sqrt[4]{3}` },
+  { id:'C10', lvl:3, blk:'C', ins:I_EXT, type:'simp', q:R`3\cdot\sqrt[4]{5\,x^8\,y^{14}\,z^{16}}`, ans:'3x^2y^3z^4∜(5y^2)',
+    hint:R`Divideix cada exponent entre 4: el quocient surt fora i el residu es queda dins.`, sol:R`3\sqrt[4]{5\,x^8\,y^{12}y^2\,z^{16}}=3x^2y^3z^4\sqrt[4]{5y^2}` },
+  { id:'C11', lvl:3, blk:'C', ins:I_INT, type:'intro', q:R`2a\sqrt{3a}`, ans:'√(12a^3)',
+    hint:R`Tant el 2 com la \(a\) entren elevats al quadrat.`, sol:R`2a\sqrt{3a}=\sqrt{2^2a^2\cdot3a}=\sqrt{12a^3}` },
+  // D
+  { id:'D1', lvl:1, blk:'D', ins:I_SUM, type:'simp', q:R`4\sqrt[3]{5}+2\sqrt[3]{5}-7\sqrt[3]{5}`, ans:'-∛5',
+    hint:R`Són radicals semblants: suma els coeficients.`, sol:R`(4+2-7)\sqrt[3]{5}=-\sqrt[3]{5}` },
+  { id:'D2', lvl:1, blk:'D', ins:I_SUM, type:'simp', q:R`\sqrt{20}+\tfrac{1}{3}\sqrt{45}+2\sqrt{125}`, ans:'13√5',
+    hint:R`Extreu factors primer: \(20=2^2\cdot5\), \(45=3^2\cdot5\), \(125=5^2\cdot5\).`, sol:R`2\sqrt5+\tfrac13\cdot3\sqrt5+2\cdot5\sqrt5=(2+1+10)\sqrt5=13\sqrt5` },
+  { id:'D3', lvl:2, blk:'D', ins:I_SUM, type:'simp', q:R`3\sqrt{12}-5\sqrt{48}+2\sqrt{192}`, ans:'2√3',
+    hint:R`\(12=2^2\cdot3\), \(48=2^4\cdot3\), \(192=2^6\cdot3\).`, sol:R`3\cdot2\sqrt3-5\cdot4\sqrt3+2\cdot8\sqrt3=(6-20+16)\sqrt3=2\sqrt3` },
+  { id:'D4', lvl:2, blk:'D', ins:I_SUM, type:'simp', q:R`\sqrt{45}-\sqrt{27}-\sqrt{20}`, ans:'√5-3√3',
+    hint:R`Només pots agrupar els radicals que, un cop simplificats, tenen el mateix radicand.`, sol:R`3\sqrt5-3\sqrt3-2\sqrt5=\sqrt5-3\sqrt3` },
+  { id:'D5', lvl:2, blk:'D', ins:I_SUM, type:'simp', q:R`5\sqrt[3]{54}+3\sqrt[3]{432}+2\sqrt[3]{128}-4\sqrt[3]{6750}`, ans:'-19∛2',
+    hint:R`Tots els radicands són un cub per 2: \(54=3^3\cdot2\), \(432=6^3\cdot2\), \(128=4^3\cdot2\), \(6750=15^3\cdot2\).`,
+    sol:R`15\sqrt[3]2+18\sqrt[3]2+8\sqrt[3]2-60\sqrt[3]2=-19\sqrt[3]{2}` },
+  { id:'D6', lvl:3, blk:'D', ins:I_SUM, type:'simp', q:R`\sqrt{36}+2\sqrt{144}-5\sqrt{324}+\sqrt{576}-7\sqrt{6}+5\sqrt{294}`, ans:'28√6-36',
+    hint:R`Algunes arrels són exactes. \(294=7^2\cdot6\).`, sol:R`6+24-90+24-7\sqrt6+35\sqrt6=-36+28\sqrt6` },
+  { id:'D7', lvl:3, blk:'D', ins:I_SUM, type:'simp', q:R`\sqrt[3]{81}-3\sqrt[3]{375}+\sqrt[3]{686}+2\sqrt[3]{648}`, ans:'7∛2',
+    hint:R`\(81=3^3\cdot3\), \(375=5^3\cdot3\), \(686=7^3\cdot2\), \(648=6^3\cdot3\).`, sol:R`3\sqrt[3]3-15\sqrt[3]3+7\sqrt[3]2+12\sqrt[3]3=7\sqrt[3]{2}` },
+  { id:'D8', lvl:3, blk:'D', ins:I_SUM, type:'simp', q:R`\tfrac{1}{2}\sqrt{3}-\sqrt{27}+\tfrac{1}{3}\sqrt{108}-\tfrac{3}{5}\sqrt{300}`, ans:'-13√3/2',
+    hint:R`\(27=3^2\cdot3\), \(108=6^2\cdot3\), \(300=10^2\cdot3\). Després suma les fraccions.`, sol:R`\tfrac12\sqrt3-3\sqrt3+2\sqrt3-6\sqrt3=\left(\tfrac12-7\right)\sqrt3=-\tfrac{13}{2}\sqrt3` },
+  // E
+  { id:'E1', lvl:1, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{\sqrt{2}}{\sqrt{3}}`, ans:'√6/3',
+    hint:R`Multiplica numerador i denominador per \(\sqrt3\).`, sol:R`\dfrac{\sqrt2\cdot\sqrt3}{\sqrt3\cdot\sqrt3}=\dfrac{\sqrt6}{3}` },
+  { id:'E2', lvl:1, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{6}{\sqrt{2}}`, ans:'3√2',
+    hint:R`Multiplica per \(\sqrt2\) i simplifica la fracció.`, sol:R`\dfrac{6\sqrt2}{2}=3\sqrt2` },
+  { id:'E3', lvl:1, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{3}{\sqrt{3}}`, ans:'√3',
+    hint:R`Després de multiplicar per \(\sqrt3\), simplifica.`, sol:R`\dfrac{3\sqrt3}{3}=\sqrt3` },
+  { id:'E4', lvl:2, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{2}{\sqrt{6}+\sqrt{2}}`, ans:'(√6-√2)/2',
+    hint:R`El conjugat de \(\sqrt6+\sqrt2\) és \(\sqrt6-\sqrt2\). Escriu el numerador entre parèntesis: (√6−√2)/2.`, sol:R`\dfrac{2(\sqrt6-\sqrt2)}{6-2}=\dfrac{2(\sqrt6-\sqrt2)}{4}=\dfrac{\sqrt6-\sqrt2}{2}` },
+  { id:'E5', lvl:2, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{7}{3-\sqrt{2}}`, ans:'3+√2',
+    hint:R`Conjugat: \(3+\sqrt2\). Al denominador queda \(3^2-(\sqrt2)^2\).`, sol:R`\dfrac{7(3+\sqrt2)}{9-2}=\dfrac{7(3+\sqrt2)}{7}=3+\sqrt2` },
+  { id:'E6', lvl:2, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{1}{\sqrt{7}+\sqrt{3}}`, ans:'(√7-√3)/4',
+    hint:R`Multiplica pel conjugat \(\sqrt7-\sqrt3\).`, sol:R`\dfrac{\sqrt7-\sqrt3}{7-3}=\dfrac{\sqrt7-\sqrt3}{4}` },
+  { id:'E7', lvl:3, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{2-\sqrt{3}}{\sqrt{3}+4}`, ans:'(11-6√3)/13',
+    hint:R`Conjugat: \(4-\sqrt3\). Al numerador cal multiplicar dos binomis.`, sol:R`\dfrac{(2-\sqrt3)(4-\sqrt3)}{16-3}=\dfrac{8-2\sqrt3-4\sqrt3+3}{13}=\dfrac{11-6\sqrt3}{13}` },
+  { id:'E8', lvl:3, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{\sqrt{5}}{\sqrt{5}-5}`, ans:'-(1+√5)/4',
+    hint:R`Conjugat: \(\sqrt5+5\). El denominador surt negatiu.`, sol:R`\dfrac{\sqrt5(\sqrt5+5)}{5-25}=\dfrac{5+5\sqrt5}{-20}=-\dfrac{1+\sqrt5}{4}` },
+  { id:'E9', lvl:3, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{7-\sqrt{5}}{3+\sqrt{5}}`, ans:'(13-5√5)/2',
+    hint:R`Conjugat: \(3-\sqrt5\).`, sol:R`\dfrac{(7-\sqrt5)(3-\sqrt5)}{9-5}=\dfrac{21-7\sqrt5-3\sqrt5+5}{4}=\dfrac{26-10\sqrt5}{4}=\dfrac{13-5\sqrt5}{2}` },
+  { id:'E10', lvl:3, blk:'E', ins:I_RAT, type:'simp', q:R`\dfrac{\sqrt{6}}{2-\sqrt{6}}`, ans:'-3-√6',
+    hint:R`Conjugat: \(2+\sqrt6\). Compte amb el signe del denominador.`, sol:R`\dfrac{\sqrt6(2+\sqrt6)}{4-6}=\dfrac{2\sqrt6+6}{-2}=-3-\sqrt6` },
+  // F
+  { id:'F1', lvl:2, blk:'F', ins:I_COMB, type:'simp', q:R`\left(\sqrt{3}-\sqrt{15}\right)\cdot\sqrt{3}`, ans:'3-3√5',
+    hint:R`Propietat distributiva. Després extreu factors de \(\sqrt{45}\).`, sol:R`\sqrt9-\sqrt{45}=3-3\sqrt5` },
+  { id:'F2', lvl:2, blk:'F', ins:I_COMB, type:'simp', q:R`\left(3\sqrt{2}+2\sqrt{3}\right)\cdot\left(\sqrt{2}+\sqrt{3}\right)`, ans:'12+5√6',
+    hint:R`Multiplica cada terme del primer parèntesi per cada terme del segon.`, sol:R`3\cdot2+3\sqrt6+2\sqrt6+2\cdot3=12+5\sqrt6` },
+  { id:'F3', lvl:2, blk:'F', ins:I_COMB, type:'simp', q:R`\left(8\sqrt{2}+5\sqrt{3}\right)\cdot\left(4\sqrt{2}-3\sqrt{3}\right)`, ans:'19-4√6',
+    hint:R`Quatre productes. \(\sqrt2\cdot\sqrt2=2\) i \(\sqrt3\cdot\sqrt3=3\).`, sol:R`64-24\sqrt6+20\sqrt6-45=19-4\sqrt6` },
+  { id:'F4', lvl:3, blk:'F', ins:I_COMB, type:'simp', q:R`\left(3-\sqrt{2}\right)^2-6\left(3-\sqrt{2}\right)+7`, ans:'0',
+    hint:R`\((a-b)^2=a^2-2ab+b^2\).`, sol:R`9-6\sqrt2+2-18+6\sqrt2+7=0` },
+  { id:'F5', lvl:3, blk:'F', ins:I_COMB, type:'simp', q:R`\left(\sqrt{7}-3\right)^2+6\left(\sqrt{7}-3\right)-19`, ans:'-21',
+    hint:R`Desenvolupa el quadrat i aplica la distributiva.`, sol:R`7-6\sqrt7+9+6\sqrt7-18-19=-21` },
+  { id:'F6', lvl:3, blk:'F', ins:I_COMB, type:'simp', q:R`\dfrac{2}{\sqrt{18}}-\left(\sqrt{2}-1\right)^2`, ans:'7√2/3-3',
+    hint:R`\(\sqrt{18}=3\sqrt2\). Racionalitza la primera fracció.`, sol:R`\dfrac{2}{3\sqrt2}-(2-2\sqrt2+1)=\dfrac{\sqrt2}{3}-3+2\sqrt2=\dfrac{7\sqrt2}{3}-3` },
+  // G
+  { id:'G1', lvl:1, blk:'G', type:'simp', ins:'Un hort quadrat té una àrea de 72 m². Quant fa el costat? Dona el valor exacte (sense unitats).',
+    q:R`\ell^2=72`, ans:'6√2',
+    hint:R`\(\ell=\sqrt{72}\). Descompon 72.`, sol:R`\ell=\sqrt{72}=\sqrt{2^2\cdot2\cdot3^2}=6\sqrt2\ \text{m}` },
+  { id:'G2', lvl:2, blk:'G', type:'simp', ins:'Una capsa cúbica té un volum de 54 cm³. Quant fa l\'aresta? Valor exacte, sense unitats.',
+    q:R`a^3=54`, ans:'3∛2',
+    hint:R`\(a=\sqrt[3]{54}\) i \(54=3^3\cdot2\).`, sol:R`a=\sqrt[3]{54}=3\sqrt[3]{2}\ \text{cm}` },
+  { id:'G3', lvl:2, blk:'G', type:'simp', ins:'Un rectangle té costats de √50 cm i √18 cm. Calcula\'n el perímetre exacte.',
+    q:R`P=2\sqrt{50}+2\sqrt{18}`, ans:'16√2',
+    hint:R`Simplifica cada radical i agrupa.`, sol:R`2\cdot5\sqrt2+2\cdot3\sqrt2=16\sqrt2\ \text{cm}` },
+  { id:'G4', lvl:3, blk:'G', type:'simp', ins:'Un rectangle té costats de 2√3 cm i √6 cm. Calcula la longitud exacta de la diagonal.',
+    q:R`d=\sqrt{\left(2\sqrt3\right)^2+\left(\sqrt6\right)^2}`, ans:'3√2',
+    hint:R`Teorema de Pitàgores. \((2\sqrt3)^2=4\cdot3\).`, sol:R`d=\sqrt{12+6}=\sqrt{18}=3\sqrt2\ \text{cm}` },
+  { id:'G5', lvl:3, blk:'G', type:'simp', ins:'Un full DIN A4 fa 21 cm d\'amplada i la seva llargada és 21·√2 cm. Si el doblegues per la meitat (A5), quina és l\'amplada nova? Valor exacte.',
+    q:R`\text{amplada A5}=\dfrac{21\sqrt2}{2}`, ans:'21√2/2',
+    hint:R`L'amplada de l'A5 és la meitat de la llargada de l'A4.`, sol:R`\dfrac{21\sqrt2}{2}\approx14{,}85\ \text{cm}` }
+];
+
+/* Preguntes obertes de l'avaluació final */
+const EVAL_OPEN = [
+  { id:'V1', type:'simp', ins:I_SUM, q:R`2\sqrt[3]{54}-\sqrt[3]{16}`, ans:'4∛2', hint:'', sol:R`2\cdot3\sqrt[3]2-2\sqrt[3]2=4\sqrt[3]2` },
+  { id:'V2', type:'simp', ins:I_EXT, q:R`\sqrt{50\,x^3}`, ans:'5x√(2x)', hint:'', sol:R`\sqrt{5^2\cdot2\cdot x^2\cdot x}=5x\sqrt{2x}` },
+  { id:'V3', type:'simp', ins:I_RAT, q:R`\dfrac{4}{\sqrt{7}-\sqrt{3}}`, ans:'√7+√3', hint:'', sol:R`\dfrac{4(\sqrt7+\sqrt3)}{7-3}=\sqrt7+\sqrt3` }
+];
+if (typeof module !== 'undefined') module.exports = { EX, EVAL_OPEN, BLOCKS };
+
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const num = (v, d = 2) => v.toLocaleString('ca-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const num4 = v => (Number.isInteger(v) ? String(v) : v.toLocaleString('ca-ES', { maximumFractionDigits: 5 }));
+
+  /* ---------- emmagatzematge local (només comoditat) ---------- */
+  const KEY = 'radicals5e-v1';
+  let store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { store = {}; }
+  store.done = store.done || {}; store.self = store.self || {};
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
+
+  /* ---------- MathJax ---------- */
+  const mjReady = () => (window.MathJax && MathJax.startup && MathJax.startup.promise) ? MathJax.startup.promise : Promise.reject();
+  function typeset(els) {
+    return mjReady().then(() => {
+      if (MathJax.typesetClear) MathJax.typesetClear(els);
+      return MathJax.typesetPromise(els);
+    }).catch(() => {});
+  }
+
+  /* ---------- rutes ---------- */
+  const VIEWS = ['inici', 'implica', 'explora', 'explica', 'aplica', 'avalua'];
+  function route() {
+    const h = location.hash.replace('#', '');
+    let v = VIEWS.includes(h) ? h : null;
+    let jump = null;
+    if (!v && /^ex[1-6]$/.test(h)) { v = 'explica'; jump = h; }
+    v = v || 'inici';
+    VIEWS.forEach(n => { $('#v-' + n).hidden = n !== v; });
+    $$('.phases a').forEach(a => a.setAttribute('aria-current', a.dataset.v === v ? 'page' : 'false'));
+    const cur = $('.phases a[aria-current="page"]');
+    if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    if (jump) { const el = document.getElementById(jump); if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30); }
+    else window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+
+  /* ---------- opció múltiple ---------- */
+  function renderMC(box, item, onAnswer) {
+    box.innerHTML = '';
+    const q = document.createElement('p'); q.className = 'qtext'; q.innerHTML = item.q; box.appendChild(q);
+    const opts = document.createElement('div'); opts.className = 'opts'; box.appendChild(opts);
+    const fb = document.createElement('div'); fb.setAttribute('role', 'status'); box.appendChild(fb);
+    item.o.forEach((t, i) => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.innerHTML = t;
+      b.addEventListener('click', () => {
+        const ok = i === item.c;
+        $$('.opt', opts).forEach((x, j) => { x.disabled = true; if (j === item.c) x.classList.add('right'); });
+        if (!ok) b.classList.add('wrong');
+        fb.className = 'fb ' + (ok ? 'ok' : 'ko');
+        fb.innerHTML = '<b>' + (ok ? 'Correcte.' : 'No és correcte.') + '</b> ' + item.f;
+        typeset([fb]);
+        if (onAnswer) onAnswer(ok);
+      });
+      opts.appendChild(b);
+    });
+  }
+
+  /* ---------- IMPLICA'T ---------- */
+  (function garden() {
+    const S = 20, O = 15;
+    let g = '';
+    for (let i = 0; i <= 10; i++) {
+      g += `<line x1="${O + i * S}" y1="${O}" x2="${O + i * S}" y2="${O + 10 * S}" stroke="var(--line)" stroke-width="1"/>`;
+      g += `<line x1="${O}" y1="${O + i * S}" x2="${O + 10 * S}" y2="${O + i * S}" stroke="var(--line)" stroke-width="1"/>`;
+    }
+    $('#gGrid').innerHTML = g;
+    const r = $('#gSide'), n = $('#gSideNum'), sq = $('#gSq');
+    let near = 0;
+    function upd(v, from) {
+      v = Math.max(0, Math.min(10, +v || 0));
+      if (from !== 'r') r.value = v;
+      if (from !== 'n') n.value = +v.toFixed(4);
+      $('#gSideOut').textContent = num(v);
+      sq.setAttribute('width', v * S); sq.setAttribute('height', v * S);
+      const a = v * v;
+      $('#gArea').textContent = num(a, a > 0 && Math.abs(a - 50) < 0.05 ? 4 : 2) + ' m²';
+      const d = 50 - a, msg = $('#gMsg');
+      if (Math.abs(d) < 1e-9) msg.textContent = 'Exacte? Mira quantes xifres has fet servir.';
+      else if (Math.abs(d) < 0.02) { msg.textContent = 'Molt a prop! Però encara no és exacte. Pots afinar més?'; near++; }
+      else if (d > 0) msg.textContent = 'Ens falten ' + num(d) + ' m².';
+      else msg.textContent = 'Ens sobren ' + num(-d) + ' m².';
+    }
+    r.addEventListener('input', () => upd(r.value, 'r'));
+    n.addEventListener('input', () => upd(n.value, 'n'));
+    $('#gReveal').addEventListener('click', () => { $('#gExplain').hidden = false; });
+    upd(6);
+  })();
+
+  renderMC($('#mcA4'), {
+    q: 'Quin d\'aquests nombres s\'assembla més al resultat?',
+    o: ['\\(1{,}5\\)', '\\(\\sqrt{2}\\approx1{,}414\\)', '\\(\\tfrac43\\approx1{,}333\\)', '\\(\\tfrac{\\pi}{2}\\approx1{,}571\\)'],
+    c: 1,
+    f: '\\(29{,}7:21=1{,}414\\ldots\\approx\\sqrt2\\). Els fulls DIN tenen proporció \\(\\sqrt2\\): és l\'única proporció que es manté quan doblegues el full per la meitat. La llargada exacta d\'un A4 seria \\(21\\sqrt2\\) cm.'
+  });
+  renderMC($('#mcDelos'), {
+    q: 'Quina aresta ha de tenir el nou altar?',
+    o: ['2 m', '1,5 m', '\\(\\sqrt2\\approx1{,}41\\) m', '\\(\\sqrt[3]{2}\\approx1{,}26\\) m'],
+    c: 3,
+    f: 'El volum ha de ser 2 m³, així que \\(a^3=2\\) i \\(a=\\sqrt[3]{2}\\approx1{,}26\\) m. Si doblem l\'aresta, el volum es multiplica per \\(2^3=8\\).'
+  });
+  const tn = $('#thinkNote');
+  try { tn.value = localStorage.getItem(KEY + '-think') || ''; } catch (e) {}
+  tn.addEventListener('input', () => { try { localStorage.setItem(KEY + '-think', tn.value); } catch (e) {} });
+
+  /* ---------- EXPLORA ---------- */
+  renderMC($('#mcPredict'), {
+    q: 'Quant creus que val \\(8^{\\frac{2}{3}}\\)?',
+    o: ['\\(\\tfrac{16}{3}\\)', '\\(4\\)', '\\(2\\)', '\\(12\\)'],
+    c: 1,
+    f: '\\(8^{\\frac23}=\\sqrt[3]{8^2}=\\sqrt[3]{64}=4\\). També es pot fer així: \\(\\left(\\sqrt[3]{8}\\right)^2=2^2=4\\). Comprova-ho amb els controls.'
+  });
+  (function explorer() {
+    const A = $('#xA'), M = $('#xM'), N = $('#xN');
+    let t;
+    function upd() {
+      const a = +A.value, m = +M.value, n = +N.value;
+      $('#xAo').textContent = a; $('#xMo').textContent = m; $('#xNo').textContent = n;
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const v1 = Math.pow(Math.pow(a, m), 1 / n), v2 = Math.pow(a, m / n);
+        const r1 = Math.round(v1), isInt = Math.abs(v1 - r1) < 1e-9;
+        const show = v => isInt ? String(r1) : '\\approx ' + num4(+v.toFixed(5)).replace(',', '{,}');
+        const idx = n === 2 ? '' : '[' + n + ']';
+        $('#xRad').innerHTML = `\\(\\sqrt${idx}{${a}^{${m}}}=\\sqrt${idx}{${Math.pow(a, m)}}${isInt ? '=' : ''}${show(v1)}\\)`;
+        $('#xPow').innerHTML = `\\(${a}^{\\frac{${m}}{${n}}}${isInt ? '=' : ''}${show(v2)}\\)`;
+        typeset([$('#xRad'), $('#xPow')]);
+      }, 80);
+    }
+    [A, M, N].forEach(e => e.addEventListener('input', upd));
+    upd();
+  })();
+
+  (function props() {
+    const P = [
+      { l: '\\sqrt{a\\cdot b}=\\sqrt a\\cdot\\sqrt b', L: (a, b) => Math.sqrt(a * b), R: (a, b) => Math.sqrt(a) * Math.sqrt(b), always: true },
+      { l: '\\sqrt{a+b}=\\sqrt a+\\sqrt b', L: (a, b) => Math.sqrt(a + b), R: (a, b) => Math.sqrt(a) + Math.sqrt(b), always: false },
+      { l: '\\sqrt{\\dfrac ab}=\\dfrac{\\sqrt a}{\\sqrt b}', L: (a, b) => Math.sqrt(a / b), R: (a, b) => Math.sqrt(a) / Math.sqrt(b), always: true },
+      { l: '\\left(\\sqrt a\\right)^2=a', L: a => Math.pow(Math.sqrt(a), 2), R: a => a, always: true },
+      { l: '\\sqrt{a^2+b^2}=a+b', L: (a, b) => Math.sqrt(a * a + b * b), R: (a, b) => a + b, always: false },
+      { l: '\\sqrt{a-b}=\\sqrt a-\\sqrt b', L: (a, b) => (a - b >= 0 ? Math.sqrt(a - b) : NaN), R: (a, b) => Math.sqrt(a) - Math.sqrt(b), always: false }
+    ];
+    const body = $('#propBody'); const answers = {};
+    body.innerHTML = P.map((p, i) => `<tr data-i="${i}"><td>\\(${p.l}\\)</td><td class="num" data-l></td><td class="num" data-r></td><td class="eq" data-e></td>
+      <td><span class="seg" role="group" aria-label="Classificació"><button type="button" data-a="1">Sempre</button><button type="button" data-a="0">No sempre</button></span></td></tr>`).join('');
+    const fmtv = v => isNaN(v) ? 'no existeix' : num4(+v.toFixed(4));
+    function upd() {
+      const a = parseFloat($('#pa').value), b = parseFloat($('#pb').value);
+      P.forEach((p, i) => {
+        const tr = body.children[i];
+        if (isNaN(a) || isNaN(b) || a < 0 || b <= 0) { $('[data-l]', tr).textContent = '–'; $('[data-r]', tr).textContent = '–'; $('[data-e]', tr).textContent = ''; return; }
+        const L = p.L(a, b), R = p.R(a, b);
+        $('[data-l]', tr).textContent = fmtv(L); $('[data-r]', tr).textContent = fmtv(R);
+        const eq = !isNaN(L) && !isNaN(R) && Math.abs(L - R) < 1e-9;
+        const e = $('[data-e]', tr); e.textContent = eq ? '=' : '≠'; e.className = 'eq ' + (eq ? 'yes' : 'no');
+      });
+    }
+    body.addEventListener('click', ev => {
+      const btn = ev.target.closest('button[data-a]'); if (!btn) return;
+      const tr = btn.closest('tr'), i = +tr.dataset.i, said = btn.dataset.a === '1';
+      const ok = said === P[i].always;
+      $$('button', tr).forEach(b => b.className = '');
+      btn.className = ok ? 'on-ok' : 'on-ko';
+      answers[i] = ok;
+      const n = Object.keys(answers).length, good = Object.values(answers).filter(Boolean).length;
+      const fb = $('#propFb');
+      if (n === P.length) {
+        fb.className = 'fb ' + (good === P.length ? 'ok' : 'warn');
+        fb.innerHTML = good === P.length
+          ? '<b>Ben investigat.</b> L\'arrel es reparteix sobre el producte i el quocient, però no sobre la suma ni la resta. Per exemple, amb \\(a=9\\) i \\(b=16\\): \\(\\sqrt{25}=5\\), però \\(3+4=7\\).'
+          : '<b>Revisa les marcades en vermell.</b> Busca un parell de valors que faci falsa la igualtat. Si no el trobes mai, probablement és sempre certa.';
+        typeset([fb]);
+      } else { fb.className = ''; fb.textContent = ''; }
+    });
+    ['pa', 'pb'].forEach(id => $('#' + id).addEventListener('input', upd));
+    upd();
+  })();
+
+  /* ---------- EXPLICA: passos ---------- */
+  $$('[data-steps]').forEach(box => {
+    const steps = $$('.step', box);
+    steps.forEach((s, i) => { s.hidden = i > 0; });
+    if (steps.length < 2) return;
+    const row = document.createElement('div'); row.className = 'row';
+    const next = document.createElement('button'); next.type = 'button'; next.className = 'btn'; next.textContent = 'Pas següent';
+    const all = document.createElement('button'); all.type = 'button'; all.className = 'linkbtn'; all.textContent = 'Mostra-ho tot';
+    let k = 1;
+    const refresh = () => { steps.forEach((s, i) => s.hidden = i >= k); next.disabled = k >= steps.length; all.hidden = k >= steps.length; };
+    next.addEventListener('click', () => { k++; refresh(); });
+    all.addEventListener('click', () => { k = steps.length; refresh(); });
+    row.append(next, all); box.after(row);
+  });
+  $$('[data-jump]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault(); const el = document.getElementById(a.dataset.jump); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+
+  /* ---------- targetes d'exercici ---------- */
+  const LV = { 1: 'Nivell 1 · Bàsic', 2: 'Nivell 2 · Mitjà', 3: 'Nivell 3 · Repte' };
+  const KEYS = [
+    ['√( )', '√()', -1], ['∛( )', '∛()', -1], ['∜( )', '∜()', -1], ['ⁿ√', 'arrel(; )', -3],
+    ['^', '^()', -1], ['( )', '()', -1], ['/', '/', 0], ['·', '·', 0], ['−', '-', 0]
+  ];
+  function insert(inp, txt, back) {
+    const s = inp.selectionStart ?? inp.value.length, e = inp.selectionEnd ?? s;
+    inp.value = inp.value.slice(0, s) + txt + inp.value.slice(e);
+    const pos = s + txt.length + back;
+    inp.focus(); inp.setSelectionRange(pos, pos);
+    inp.dispatchEvent(new Event('input'));
+  }
+  function makeCard(ex, opt) {
+    const art = document.createElement('article');
+    art.className = 'ex'; art.id = 'ex-' + ex.id; art.dataset.lvl = ex.lvl || ''; art.dataset.blk = ex.blk || '';
+    const head = opt.eval ? `<span class="ex-id">${ex.id}</span>` :
+      `<span class="ex-id">${ex.id}</span><span class="lvl l${ex.lvl}">${LV[ex.lvl]}</span><span class="blkname">${BLOCKS[ex.blk]}</span>`;
+    art.innerHTML = `<div class="ex-head">${head}<span class="donebadge" hidden>✓ Resolt</span></div>
+      <p>${ex.ins}</p>
+      <div class="q">\\[${ex.q}\\]</div>
+      <div class="ans"><label class="sr" for="in-${ex.id}">Resposta de l'exercici ${ex.id}</label>
+        <input type="text" id="in-${ex.id}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escriu la resposta">
+        <button type="button" class="btn primary" data-check>Comprova</button></div>
+      <div class="kbd">${KEYS.map((k, i) => `<button type="button" data-k="${i}" aria-label="Insereix ${k[0]}">${k[0]}</button>`).join('')}</div>
+      <div class="preview" aria-live="polite"></div>
+      <div class="fb" role="status" hidden></div>
+      ${ex.hint || ex.sol ? `<div class="tools">${ex.hint ? '<button type="button" class="linkbtn" data-hint>Pista</button>' : ''}<button type="button" class="linkbtn" data-sol disabled>Solució</button></div>` : ''}
+      ${ex.hint ? `<div class="hint" hidden><b>Pista:</b> ${ex.hint}</div>` : ''}
+      <div class="sol" hidden><b>Solució:</b> \\(${ex.sol}\\)</div>`;
+    const inp = $('input', art), pv = $('.preview', art), fb = $('.fb', art), solB = $('[data-sol]', art);
+    let t;
+    inp.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const v = inp.value.trim();
+        if (!v) { pv.textContent = ''; return; }
+        try { pv.innerHTML = 'Així ho interpreto: <span class="pv">\\(' + RAD.toTeX(v) + '\\)</span>'; typeset([pv]); }
+        catch (e) { pv.textContent = e.message; }
+      }, 180);
+    });
+    $$('.kbd button', art).forEach(b => b.addEventListener('click', () => { const k = KEYS[+b.dataset.k]; insert(inp, k[1], k[2]); }));
+    const doCheck = () => {
+      const r = RAD.check(ex.type, ex.ans, inp.value);
+      fb.hidden = false;
+      if (r.ok) { fb.className = 'fb ok'; fb.innerHTML = '<b>Correcte!</b> ' + (opt.eval ? '' : 'Pots comparar el teu procediment amb la solució.'); }
+      else if (r.kind === 'form') { fb.className = 'fb warn'; fb.innerHTML = '<b>Gairebé.</b> ' + r.msg; }
+      else if (r.kind === 'syntax') { fb.className = 'fb warn'; fb.innerHTML = '<b>No entenc l\'expressió.</b> ' + r.msg; }
+      else { fb.className = 'fb ko'; fb.innerHTML = '<b>Encara no.</b> ' + r.msg; }
+      if (r.kind !== 'syntax' && solB) solB.disabled = false;
+      if (r.ok) { art.classList.add('done'); $('.donebadge', art).hidden = false; }
+      if (opt.onResult) opt.onResult(ex, r);
+    };
+    $('[data-check]', art).addEventListener('click', doCheck);
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doCheck(); } });
+    const hb = $('[data-hint]', art); if (hb) hb.addEventListener('click', () => { $('.hint', art).hidden = !$('.hint', art).hidden; });
+    if (solB) solB.addEventListener('click', () => { $('.sol', art).hidden = !$('.sol', art).hidden; });
+    if (opt.done) { art.classList.add('done'); $('.donebadge', art).hidden = false; }
+    return art;
+  }
+
+  /* ---------- APLICA ---------- */
+  const list = $('#exList');
+  let fL = 'all', fB = 'all';
+  function updProgress() {
+    const ids = EX.map(e => e.id), d = ids.filter(i => store.done[i]).length;
+    $('#progTxt').textContent = d + ' de ' + ids.length + ' exercicis resolts';
+    $('#progBar').style.width = (100 * d / ids.length) + '%';
+    $('#progLv').textContent = [1, 2, 3].map(l => 'N' + l + ': ' + EX.filter(e => e.lvl === l && store.done[e.id]).length + '/' + EX.filter(e => e.lvl === l).length).join(' · ');
+  }
+  EX.forEach(ex => list.appendChild(makeCard(ex, {
+    done: !!store.done[ex.id],
+    onResult: (e, r) => { if (r.ok) { store.done[e.id] = 1; save(); updProgress(); } }
+  })));
+  function chips(box, items, get, set) {
+    box.innerHTML = items.map(([v, t]) => `<button type="button" class="chip" data-v="${v}" aria-pressed="${get() === v}">${t}</button>`).join('');
+    box.addEventListener('click', e => {
+      const b = e.target.closest('.chip'); if (!b) return;
+      set(b.dataset.v); $$('.chip', box).forEach(c => c.setAttribute('aria-pressed', c === b)); filter();
+    });
+  }
+  chips($('#fLvl'), [['all', 'Tots els nivells'], ['1', 'Nivell 1'], ['2', 'Nivell 2'], ['3', 'Nivell 3']], () => fL, v => fL = v);
+  chips($('#fBlk'), [['all', 'Tots els blocs'], ...Object.entries(BLOCKS).map(([k, v]) => [k, k + '. ' + v])], () => fB, v => fB = v);
+  function filter() { $$('.ex', list).forEach(c => { c.hidden = !((fL === 'all' || c.dataset.lvl === fL) && (fB === 'all' || c.dataset.blk === fB)); }); }
+  updProgress();
+
+  /* ---------- AVALUA ---------- */
+  const QUIZ = [
+    { q: 'Quina expressió és igual a \\(a^{\\frac34}\\)?', o: ['\\(\\sqrt[3]{a^4}\\)', '\\(\\sqrt[4]{a^3}\\)', '\\(\\dfrac{a^3}{4}\\)', '\\(\\tfrac34\\,a\\)'], c: 1,
+      f: 'El denominador de l\'exponent és l\'índex i el numerador és l\'exponent del radicand: \\(a^{\\frac34}=\\sqrt[4]{a^3}\\).' },
+    { q: 'Quant val \\(\\sqrt{9+16}\\)?', o: ['\\(7\\)', '\\(25\\)', '\\(5\\)', '\\(\\sqrt7\\)'], c: 2,
+      f: 'Primer se suma dins de l\'arrel: \\(\\sqrt{25}=5\\). L\'arrel no es reparteix sobre la suma.' },
+    { q: 'Quant val \\(\\sqrt[3]{-8}\\)?', o: ['\\(-2\\)', 'No existeix', '\\(2\\)', '\\(\\pm2\\)'], c: 0,
+      f: 'L\'índex és senar, així que el radicand pot ser negatiu: \\((-2)^3=-8\\).' },
+    { q: 'Quina és la forma simplificada de \\(\\sqrt{72}\\)?', o: ['\\(2\\sqrt{18}\\)', '\\(3\\sqrt8\\)', '\\(36\\sqrt2\\)', '\\(6\\sqrt2\\)'], c: 3,
+      f: '\\(72=2^3\\cdot3^2=2^2\\cdot3^2\\cdot2\\), per tant \\(\\sqrt{72}=2\\cdot3\\sqrt2=6\\sqrt2\\). Les altres opcions encara es poden simplificar o són incorrectes.' },
+    { q: '\\(2\\sqrt3\\cdot3\\sqrt3=\\)', o: ['\\(6\\sqrt3\\)', '\\(18\\)', '\\(5\\sqrt3\\)', '\\(6\\sqrt6\\)'], c: 1,
+      f: 'Es multipliquen coeficients i radicals: \\(2\\cdot3\\cdot\\sqrt3\\cdot\\sqrt3=6\\cdot3=18\\).' },
+    { q: '\\(\\sqrt[4]{\\sqrt[3]{5}}=\\)', o: ['\\(\\sqrt[7]{5}\\)', '\\(5^{\\frac43}\\)', '\\(\\sqrt[12]{5}\\)', '\\(\\sqrt[12]{5^7}\\)'], c: 2,
+      f: 'L\'arrel d\'una arrel té per índex el producte dels índexs: \\(4\\cdot3=12\\).' },
+    { q: 'Per racionalitzar \\(\\dfrac{1}{3-\\sqrt5}\\) multipliquem numerador i denominador per…', o: ['\\(\\sqrt5\\)', '\\(3+\\sqrt5\\)', '\\(3-\\sqrt5\\)', '\\(5\\)'], c: 1,
+      f: 'Pel conjugat: \\((3-\\sqrt5)(3+\\sqrt5)=9-5=4\\), i ja no queda cap arrel al denominador.' },
+    { q: 'En Pau escriu \\(\\sqrt{a^2+b^2}=a+b\\). Té raó?', o: ['Sí, sempre', 'Sí, perquè \\(\\sqrt{a^2}=a\\)', 'No: l\'arrel no es reparteix sobre la suma', 'Només si \\(a\\) i \\(b\\) són positius'], c: 2,
+      f: 'Contraexemple: amb \\(a=3\\) i \\(b=4\\), \\(\\sqrt{9+16}=5\\), però \\(3+4=7\\).' },
+    { q: 'Quina d\'aquestes sumes es pot escriure amb un sol radical?', o: ['\\(\\sqrt8+\\sqrt{18}\\)', '\\(\\sqrt2+\\sqrt3\\)', '\\(\\sqrt[3]2+\\sqrt2\\)', '\\(\\sqrt5+\\sqrt{15}\\)'], c: 0,
+      f: '\\(\\sqrt8=2\\sqrt2\\) i \\(\\sqrt{18}=3\\sqrt2\\) són semblants: \\(2\\sqrt2+3\\sqrt2=5\\sqrt2\\).' },
+    { q: 'Si introduïm el factor dins del radical, \\(3\\sqrt2=\\)', o: ['\\(\\sqrt6\\)', '\\(\\sqrt{12}\\)', '\\(\\sqrt{18}\\)', '\\(\\sqrt{32}\\)'], c: 2,
+      f: 'El 3 entra elevat a l\'índex: \\(\\sqrt{3^2\\cdot2}=\\sqrt{18}\\).' }
+  ];
+  const res = {};
+  const TOTAL = QUIZ.length + EVAL_OPEN.length;
+  function updScore() {
+    const n = Object.keys(res).length, s = Object.values(res).filter(Boolean).length;
+    $('#scoreTxt').textContent = s + ' / ' + TOTAL;
+    const m = $('#scoreMsg');
+    if (n < TOTAL) m.textContent = 'Has respost ' + n + ' de ' + TOTAL + ' preguntes.';
+    else if (s >= 11) m.textContent = 'Molt bé! Domines els radicals. Prova els exercicis de nivell 3 que encara no hagis fet.';
+    else if (s >= 7) m.textContent = 'Bona feina. Repassa les preguntes que has fallat i fes els exercicis de nivell 2 d\'aquells blocs.';
+    else m.textContent = 'Torna a l\'apartat Explica i fes els exercicis de nivell 1 dels blocs que t\'han costat més.';
+  }
+  const quiz = $('#quiz');
+  QUIZ.forEach((item, i) => {
+    const box = document.createElement('div'); box.className = 'mc';
+    item.q = '<span class="kicker" style="margin-right:8px">' + (i + 1) + '</span>' + item.q;
+    renderMC(box, item, ok => { res['q' + i] = ok; updScore(); });
+    quiz.appendChild(box);
+  });
+  const eo = $('#evalOpen');
+  EVAL_OPEN.forEach(ex => eo.appendChild(makeCard(ex, {
+    eval: true,
+    onResult: (e, r) => { if (r.kind !== 'syntax' && res[e.id] === undefined) { res[e.id] = !!r.ok; updScore(); } else if (r.ok) { /* el primer intent és el que compta */ } }
+  })));
+  updScore();
+
+  const SELF = [
+    ['A', 'Passo de radical a potència d\'exponent fraccionari, i al revés.'],
+    ['B', 'Multiplico, divideixo, elevo i calculo arrels de radicals.'],
+    ['C', 'Extrec i introdueixo factors en un radical.'],
+    ['D', 'Sumo i resto radicals semblants.'],
+    ['E', 'Racionalitzo denominadors amb una arrel o amb un binomi.'],
+    ['F', 'Detecto errors típics, com escriure \\(\\sqrt{a+b}=\\sqrt a+\\sqrt b\\).']
+  ];
+  const sl = $('#selfList');
+  sl.innerHTML = SELF.map(([k, t]) => `<div class="self-row" data-k="${k}"><span>${t}</span><span class="light" role="group" aria-label="Nivell de domini">
+    <button type="button" data-v="g" aria-label="Ho domino">✓</button><button type="button" data-v="y" aria-label="Encara dubto">?</button><button type="button" data-v="r" aria-label="No ho sé fer">✕</button></span></div>`).join('');
+  function paintSelf() {
+    $$('.self-row', sl).forEach(r => $$('button', r).forEach(b => b.classList.toggle('on', store.self[r.dataset.k] === b.dataset.v)));
+    const weak = SELF.filter(([k]) => store.self[k] === 'r' || store.self[k] === 'y');
+    const adv = $('#selfAdvice');
+    if (!weak.length) { adv.className = ''; adv.innerHTML = ''; return; }
+    adv.className = 'fb warn';
+    adv.innerHTML = '<b>Què et proposem repassar:</b> ' + weak.map(([k]) => {
+      const blk = k === 'F' ? 'D' : k;
+      return `<a href="#aplica" data-goblk="${blk}">bloc ${blk} (${BLOCKS[blk]})</a>`;
+    }).join(', ') + '. Comença pel nivell 1 i, quan l\'encertis, passa al 2.';
+  }
+  sl.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const k = b.closest('.self-row').dataset.k;
+    store.self[k] = store.self[k] === b.dataset.v ? undefined : b.dataset.v; save(); paintSelf();
+  });
+  $('#selfAdvice').addEventListener('click', e => {
+    const a = e.target.closest('[data-goblk]'); if (!a) return;
+    fB = a.dataset.goblk; fL = 'all';
+    $$('#fBlk .chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.v === fB));
+    $$('#fLvl .chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.v === 'all'));
+    filter();
+  });
+  paintSelf();
+  const xn = $('#exitNote');
+  try { xn.value = localStorage.getItem(KEY + '-exit') || ''; } catch (e) {}
+  xn.addEventListener('input', () => { try { localStorage.setItem(KEY + '-exit', xn.value); } catch (e) {} });
+
+  route();
+})();
+
+</script>
+
+<script>
+(function(){
+  var d = document.getElementById('eas-declaracio-ia');
+  if (!d || 'popover' in HTMLElement.prototype) return;
+  d.hidden = true; d.classList.add('eas-fb');
+  document.querySelectorAll('[popovertarget="eas-declaracio-ia"]').forEach(function(b){
+    b.addEventListener('click', function(){ d.hidden = !d.hidden; if (!d.hidden) d.querySelector('.eas-tanca').focus(); });
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') d.hidden = true; });
+})();
+</script>
+</body></html>
