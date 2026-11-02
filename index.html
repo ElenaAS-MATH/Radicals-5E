@@ -1045,7 +1045,7 @@ const EX = [
     q:R`d=\sqrt{\left(2\sqrt3\right)^2+\left(\sqrt6\right)^2}`, ans:'3√2',
     hint:R`Teorema de Pitàgores. \((2\sqrt3)^2=4\cdot3\).`, sol:R`d=\sqrt{12+6}=\sqrt{18}=3\sqrt2\ \text{cm}` },
   { id:'G5', lvl:3, blk:'G', type:'simp', ins:'Un full DIN A4 fa 21 cm d\'amplada i la seva llargada és 21·√2 cm. Si el doblegues per la meitat (A5), quina és l\'amplada nova? Valor exacte.',
-    q:R`\text{amplada A5}=\dfrac{21\sqrt2}{2}`, ans:'21√2/2',
+    q:R`\text{A4: } 21 \times 21\sqrt{2}\ \text{cm} \;\longrightarrow\; \text{amplada A5} = \;?`, ans:'21√2/2',
     hint:R`L'amplada de l'A5 és la meitat de la llargada de l'A4.`, sol:R`\dfrac{21\sqrt2}{2}\approx14{,}85\ \text{cm}` }
 ];
 
@@ -1282,7 +1282,7 @@ if (typeof module !== 'undefined') module.exports = { EX, EVAL_OPEN, BLOCKS };
       <div class="kbd">${KEYS.map((k, i) => `<button type="button" data-k="${i}" aria-label="Insereix ${k[0]}">${k[0]}</button>`).join('')}</div>
       <div class="preview" aria-live="polite"></div>
       <div class="fb" role="status" hidden></div>
-      ${ex.hint || ex.sol ? `<div class="tools">${ex.hint ? '<button type="button" class="linkbtn" data-hint>Pista</button>' : ''}<button type="button" class="linkbtn" data-sol disabled>Solució</button></div>` : ''}
+      ${ex.hint || ex.sol ? `<div class="tools">${ex.hint ? '<button type="button" class="linkbtn" data-hint>Pista</button>' : ''}<button type="button" class="linkbtn" data-sol disabled title="La solució es desbloqueja quan hagis fet un primer intent">Solució (després d'un intent)</button></div>` : ''}
       ${ex.hint ? `<div class="hint" hidden><b>Pista:</b> ${ex.hint}</div>` : ''}
       <div class="sol" hidden><b>Solució:</b> \\(${ex.sol}\\)</div>`;
     const inp = $('input', art), pv = $('.preview', art), fb = $('.fb', art), solB = $('[data-sol]', art);
@@ -1304,7 +1304,7 @@ if (typeof module !== 'undefined') module.exports = { EX, EVAL_OPEN, BLOCKS };
       else if (r.kind === 'form') { fb.className = 'fb warn'; fb.innerHTML = '<b>Gairebé.</b> ' + r.msg; }
       else if (r.kind === 'syntax') { fb.className = 'fb warn'; fb.innerHTML = '<b>No entenc l\'expressió.</b> ' + r.msg; }
       else { fb.className = 'fb ko'; fb.innerHTML = '<b>Encara no.</b> ' + r.msg; }
-      if (r.kind !== 'syntax' && solB) solB.disabled = false;
+      if (r.kind !== 'syntax' && solB && solB.disabled) { solB.disabled = false; solB.textContent = 'Solució'; solB.removeAttribute('title'); }
       if (r.ok) { art.classList.add('done'); $('.donebadge', art).hidden = false; }
       if (opt.onResult) opt.onResult(ex, r);
     };
